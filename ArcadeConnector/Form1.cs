@@ -498,7 +498,9 @@ namespace ArcadeConnector
             if (chkHostTest.Checked == false)
             {
                 // === Single player fallback ===
-                string allArgs = txtRomPath.Text;
+
+                // Must be wrapped in quotes incase the path has spaces in it
+                string allArgs = "\""+txtRomPath.Text+"\"";
                 string workingDir = Path.GetDirectoryName(gameExecutable);
                 try
                 {

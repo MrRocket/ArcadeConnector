@@ -42,6 +42,8 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
 
 ## 🚀 How to Use
 
+![Screenshot1](ArcadeConnector/shots/ac_shot1.png)
+
 1. Launch the app  
 2. Enter a nickname and connect to IRC  
 3. Right-click a user to **“Ready Up”** for autojoin  
@@ -49,8 +51,6 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
 5. Use the integrated chat to communicate  
 6. When you return from the game, your **status and icon** update automatically  
 
-
-![Screenshot1](ArcadeConnector/shots/ac_shot1.png)
 ![Screenshot2](ArcadeConnector/shots/ac_shot2.png)
 ![Screenshot3](ArcadeConnector/shots/ac_shot3.png)
 
@@ -109,4 +109,4 @@ This launcher is open-source and distributed under the [MIT License](LICENSE.md)
 Forked from UME (Universal Machine Emulator) by MisterTea — [GitHub: MAMEHub](https://github.com/MisterTea/MAMEHub)  
 CSUME is derived from the MAME project and follows a BSD-like license.  
 
-> See [`LICENSE_CSUME.txt`](bin/docs/licenses/LICENSE_CSUME.txt) for full details.
+> See [`LICENSE_CSUME.txt`](docs/licenses/LICENSE_CSUME.txt) for full details.

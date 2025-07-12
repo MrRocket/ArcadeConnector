@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SmartIrc4net</id>
+    <version>1.1</version>
+    <title>SmartIrc4net (Official)</title>
+    <authors>meebey</authors>
+    <owners>meebey</owners>
+    <licenseUrl>https://github.com/meebey/SmartIrc4net/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://www.meebey.net/projects/smartirc4net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SmartIrc4net is a multi-threaded and thread-safe IRC library written in C#. It allows you to communicate with IRC servers. The API features full channel syncing and is split in 3 layers: IrcConnection, IrcCommands and IrcClient.</description>
+    <summary>Official package release of SmartIrc4net</summary>
+    <releaseNotes>New features:
+- NAMESX support (Andrew Nagle)
+- IRCv3.2 inbound message tag support (gmt2001)
+- added Mono 4.x support (Mirco Bauer)
+- use log4net and NUnit from Nuget (Mirco Bauer)
+    
+Bugfixes:
+- support X.509 client certificate correctly (Mirco Bauer)
+- handle UTC offset changes without a PING timeout (Ondřej Hošek)
+- removed non-free IRC RFC document from source tree and release tarball</releaseNotes>
+    <copyright>2003-2016 (C) Mirco Bauer &lt;meebey@meebey.net&gt;</copyright>
+    <tags>irc client</tags>
+  </metadata>
+</package>

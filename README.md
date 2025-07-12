@@ -50,9 +50,9 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
 6. When you return from the game, your **status and icon** update automatically  
 
 
-![Screenshot1](shots/ac_shot1.png)
-![Screenshot2](shots/ac_shot2.png)
-![Screenshot3](shots/ac_shot3.png)
+![Screenshot1](ArcadeConnector/shots/ac_shot1.png)
+![Screenshot2](ArcadeConnector/shots/ac_shot2.png)
+![Screenshot3](ArcadeConnector/shots/ac_shot3.png)
 
 ---
 

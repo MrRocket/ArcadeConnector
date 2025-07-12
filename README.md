@@ -49,6 +49,11 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
 5. Use the integrated chat to communicate  
 6. When you return from the game, your **status and icon** update automatically  
 
+
+![ArcadeConnector Screenshot](shots/ac_shot1.png)
+![ArcadeConnector Screenshot](shots/ac_shot2.png)
+![ArcadeConnector Screenshot](shots/ac_shot3.png)
+
 ---
 
 ## 📦 Third-Party Libraries / Credits

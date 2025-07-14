@@ -31,12 +31,19 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
 - **.NET Framework 4.5+**  
   [Download .NET 4.5](https://www.microsoft.com/en-us/download/details.aspx?id=30653)  
   [Offline Installer](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
-- **CSUME executable** (not included)  
+- **CSUME executable** (included)  
 - **ROM files** placed in the configured ROMs folder  
   ⚠️ *Arcade Connector does not and will not provide ROM files. Users must supply their own.*
 - **Minimum hardware**: Dual-core CPU, 1GB RAM, Direct3D-capable GPU  
 - **Internet or LAN connection**  
   *(Offline gameplay still works, but hosting and joining require a network)*
+- **Port Requirements**  
+  - Arcade Connector uses **UDP port 45291** for broadcasting hosted game information across the LAN.  
+  - **The C.S.U.M.E. Game connection uses port 5029 (UDP/TCP)**.  
+    If you're hosting a game over the internet, make sure to **forward both port 45291 (UDP)** and **port 5029 (UDP/TCP)** in your router or firewall.
+
+
+  
 
 ---
 

@@ -17,7 +17,6 @@ using System.Timers;
 using System.Windows.Forms;
 using IrcErrorEventArgs = Meebey.SmartIrc4net.ErrorEventArgs;
 
-
 // ===========================================================================
 
 // ==  Arcade Connector was created by Mr.Rocket aka Ron Goode ~ 7-11-2025  ==
@@ -32,7 +31,6 @@ namespace ArcadeConnector
     {
     
         private System.Windows.Forms.Timer _hostBroadcastTimer;
-        private string _lastPk3Path = "";
         private Process _serverProcess;
         private bool _isHosting = false;
         private System.Windows.Forms.Timer _hostPresenceTimer;
@@ -52,16 +50,16 @@ namespace ArcadeConnector
         private int _historyIndex = -1;
 
         private Dictionary<string, SoundPlayer> _customSounds = new Dictionary<string, SoundPlayer>(StringComparer.OrdinalIgnoreCase);
-        private bool _isAfk = false;
+   //     private bool _isAfk = false;
         private readonly HashSet<string> _afkUsers = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         private System.Timers.Timer _idleTimer;
         private TimeSpan _afkTimeout = TimeSpan.FromMinutes(10);
         private readonly Dictionary<string, DateTime> _userJoinTimes = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<string, DateTime> _userAfkTimestamps = new Dictionary<string, DateTime>(StringComparer.OrdinalIgnoreCase);
-        private bool _userInitiatedDisconnect = false;
+   //     private bool _userInitiatedDisconnect = false;
         private System.Windows.Forms.Timer _connectionCheckTimer;
         private System.Windows.Forms.Timer _pingTimer;
-        private System.Windows.Forms.Timer _ghostCheckTimer;
+   //     private System.Windows.Forms.Timer _ghostCheckTimer;
         private readonly Dictionary<string, string> _userStatus = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
         // anti-spam system
@@ -508,7 +506,7 @@ namespace ArcadeConnector
                     Debug.WriteLine("Executable: " + gameExecutable);
                     Debug.WriteLine("Arguments : " + allArgs);
                     Debug.WriteLine("Working Dir: " + workingDir);
-
+                   btnLaunch.Enabled = false;
 
                     var psi = new ProcessStartInfo
                     {
@@ -578,7 +576,7 @@ namespace ArcadeConnector
                 // TODO, handle unknown requests.
 
                 byte[] data = Encoding.UTF8.GetBytes(message);
-                udp.Send(data, data.Length, new System.Net.IPEndPoint(System.Net.IPAddress.Broadcast, 23456));
+                udp.Send(data, data.Length, new System.Net.IPEndPoint(System.Net.IPAddress.Broadcast, 45291));
 
                 // 2. Send raw profile image separately (optional binary packet)
                 if (File.Exists(profilePicPath))
@@ -594,7 +592,7 @@ namespace ArcadeConnector
                         writer.Write(imgData);                 // Raw image bytes
 
                         byte[] picPacket = ms.ToArray();
-                        udp.Send(picPacket, picPacket.Length, new System.Net.IPEndPoint(System.Net.IPAddress.Broadcast, 23456));
+                        udp.Send(picPacket, picPacket.Length, new System.Net.IPEndPoint(System.Net.IPAddress.Broadcast, 45291));
                     }
                 }
             }
@@ -624,7 +622,7 @@ namespace ArcadeConnector
                 using (UdpClient udp = new UdpClient())
                 {
                     udp.EnableBroadcast = true;
-                    udp.Send(bytes, bytes.Length, new System.Net.IPEndPoint(System.Net.IPAddress.Broadcast, 23456));
+                    udp.Send(bytes, bytes.Length, new System.Net.IPEndPoint(System.Net.IPAddress.Broadcast, 45291));
                 }
             }
         }
@@ -837,14 +835,14 @@ namespace ArcadeConnector
             return data.All(b => b == 9 || b == 10 || b == 13 || (b >= 32 && b <= 126));
         }
 
-        //new System.Net.IPEndPoint(System.Net.IPAddress.Any, 23456);
+        //new System.Net.IPEndPoint(System.Net.IPAddress.Any, 45291);
         private void StartHostListener()
         {
             Task.Run(() =>
             {
                 try
                 {
-                    var endpoint = new System.Net.IPEndPoint(System.Net.IPAddress.Any, 23456);
+                    var endpoint = new System.Net.IPEndPoint(System.Net.IPAddress.Any, 45291);
 
                     var sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                     sock.ExclusiveAddressUse = false;
@@ -855,7 +853,7 @@ namespace ArcadeConnector
                     {
                         while (true)
                         {
-                            var remoteEP = new System.Net.IPEndPoint(System.Net.IPAddress.Any, 23456);
+                            var remoteEP = new System.Net.IPEndPoint(System.Net.IPAddress.Any, 45291);
                             var data = udp.Receive(ref remoteEP);
 
                             if (data == null || data.Length < 12)
@@ -1032,6 +1030,37 @@ namespace ArcadeConnector
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            btnCloseInfo.Visible = false;
+            rtbInfo.Visible = false;
+
+            rtbWelcome.Text = "\n\n\n        Thank you for using Arcade Connector!\n\n       Please select a ROM file to get started.";
+
+            // Toggle visibility based on whether a ROM was previously selected
+            if (!string.IsNullOrEmpty(Properties.Settings.Default.RomName))
+                rtbWelcome.Visible = false;
+            else
+                rtbWelcome.Visible = true;
+
+
+            // Get the defualt CSUME paths
+            string appRoot = Application.StartupPath;
+            txtCSUMELocation.Text = Path.Combine(appRoot, "csume", "csume.exe");
+            txtRomsDefaultPath.Text = Path.Combine(appRoot, "csume", "roms");
+
+            string defaultPath = Path.Combine(Application.StartupPath, "csume", "artwork", "default.png");
+            if (File.Exists(defaultPath))
+                pbSnap.Image = Image.FromFile(defaultPath);
+            else
+                pbSnap.Image = null;
+
+            string romName = Path.GetFileNameWithoutExtension(Properties.Settings.Default.RomName);
+            UpdateSnapPreviewFromRom(romName);
+
+            //    txtCSUMELocation.ReadOnly = true;
+            //    txtRomsDefaultPath.ReadOnly = true;
+            ////btnCSUMELocation.Enabled = false;
+            ////btnROMsLocation.Enabled = false;
+
 
             // Start the program up in the right corner of the screen
             int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
@@ -1079,9 +1108,10 @@ namespace ArcadeConnector
             lblGameIsHosted.Text = "";
             lblProcessStatus.Text = "";
       
-            txtCSUMELocation.Text = Properties.Settings.Default.CSUMELocation;
-            txtRomsDefaultPath.Text = Properties.Settings.Default.RomsDefaultPath;
+            ////txtCSUMELocation.Text = Properties.Settings.Default.CSUMELocation;
+            ////txtRomsDefaultPath.Text = Properties.Settings.Default.RomsDefaultPath;
             txtRomPath.Text = Properties.Settings.Default.RomPath;
+            lblLoadedROM.Text = Properties.Settings.Default.RomName;
             cmbEngine.SelectedItem = Properties.Settings.Default.SelectedEngine;
 
             //IRC USERNAME
@@ -2968,7 +2998,7 @@ namespace ArcadeConnector
                         writer.Write(imageData);
 
                         byte[] payload = ms.ToArray();
-                        udp.Send(payload, payload.Length, new IPEndPoint(System.Net.IPAddress.Broadcast, 23456));
+                        udp.Send(payload, payload.Length, new IPEndPoint(System.Net.IPAddress.Broadcast, 45291));
                     }
                 }
             }
@@ -3024,68 +3054,130 @@ namespace ArcadeConnector
                 default: return "";
             }
         }
-        private void btnCSUMELocation_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "CSUME Executable|CSUME.exe";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                txtCSUMELocation.Text = openFileDialog.FileName;
+        ////private void btnCSUMELocation_Click(object sender, EventArgs e)
+        ////{
+        ////    OpenFileDialog openFileDialog = new OpenFileDialog();
+        ////    openFileDialog.Filter = "CSUME Executable|CSUME.exe";
+        ////    if (openFileDialog.ShowDialog() == DialogResult.OK)
+        ////    {
+        ////        txtCSUMELocation.Text = openFileDialog.FileName;
 
-                Properties.Settings.Default.CSUMELocation = txtCSUMELocation.Text;
-                Properties.Settings.Default.Save(); 
+        ////        Properties.Settings.Default.CSUMELocation = txtCSUMELocation.Text;
+        ////        Properties.Settings.Default.Save(); 
 
-            }
+        ////    }
 
-            if (string.IsNullOrWhiteSpace(txtCSUMELocation.Text))
-            {
-                MessageBox.Show("Please enter a path to your CSUME Engine.");
-            }
-            else
-            {
-                cmbEngine.Text = "CSUME";
+        ////    if (string.IsNullOrWhiteSpace(txtCSUMELocation.Text))
+        ////    {
+        ////        MessageBox.Show("Please enter a path to your CSUME Engine.");
+        ////    }
+        ////    else
+        ////    {
+        ////        cmbEngine.Text = "CSUME";
 
-            }
-            if (cmbEngine.Text == "CSUME")
-            {
+        ////    }
+        ////    if (cmbEngine.Text == "CSUME")
+        ////    {
 
-                cmbEngine.SelectedIndex = 0; 
-                txtCSUMELocation.Text = openFileDialog.FileName;
-            }
-        }
+        ////        cmbEngine.SelectedIndex = 0; 
+        ////        txtCSUMELocation.Text = openFileDialog.FileName;
+        ////    }
+        ////}
 
         private void btnBrowseRom_Click(object sender, EventArgs e)
         {
+
+
+            // Set default ROMs folder path (always inside application root)
+            string romsPath = Path.Combine(Application.StartupPath, "csume", "roms");
+
+            // Ensure the folder exists (optional, but good practice)
+            if (!Directory.Exists(romsPath))
+                Directory.CreateDirectory(romsPath);
+
+            // Open file dialog to select ROM
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
+                dlg.InitialDirectory = romsPath; // ✅ Set default directory
                 dlg.Filter = "ROM ZIP Files (*.zip)|*.zip|All Files (*.*)|*.*";
                 dlg.Title = "Select CSUME ROM";
 
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    txtRomPath.Text = dlg.FileName; 
+                    txtRomPath.Text = dlg.FileName;
 
-                    Properties.Settings.Default.RomPath = txtRomPath.Text; 
-                    Properties.Settings.Default.Save(); 
+                    // 👇 Get only the filename (e.g., "joustwr.zip")
+                    string romFileName = Path.GetFileName(dlg.FileName);
+
+                    // 👇 Display it in the label
+                    lblLoadedROM.Text = $"{romFileName}";
+
+                    Properties.Settings.Default.RomName = lblLoadedROM.Text;
+                    Properties.Settings.Default.RomPath = txtRomPath.Text;
+                    Properties.Settings.Default.Save();
+
+                    // if no ROM has ever been loaded, we display a welcome message:
+                    rtbWelcome.Text = "\n\n\n        Thank you for using Arcade Connector!\n\n       Please select a ROM file to get started.";
+
+                    // Toggle visibility based on whether a ROM was previously selected
+                    if (!string.IsNullOrEmpty(Properties.Settings.Default.RomName))
+                        rtbWelcome.Visible = false;
+                    else
+                        rtbWelcome.Visible = true;
+
+                    //...
+
+
+                    UpdateSnapPreviewFromRom(dlg.FileName); // 🔁 Load matching preview
+
                     UpdateCommandLine();
                 }
-
-
             }
         }
 
-        private void btnROMsLocation_Click(object sender, EventArgs e)
+
+
+
+
+        private void UpdateSnapPreviewFromRom(string romFilePath)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Select your ROMs Location..";
-            if (fbd.ShowDialog() == DialogResult.OK && fbd.SelectedPath.Length > 0)
+            string romFileName = Path.GetFileNameWithoutExtension(romFilePath); // e.g., "dkong"
+            string snapPath = Path.Combine(Application.StartupPath, "csume", "artwork", romFileName + ".png");
+            string altPath = Path.Combine(Application.StartupPath, "csume", "artpreview", romFileName + ".png");
+
+            if (File.Exists(snapPath))
             {
-                txtRomsDefaultPath.Text = fbd.SelectedPath.ToString();
-                Properties.Settings.Default.RomsDefaultPath = txtRomsDefaultPath.Text; 
-                Properties.Settings.Default.Save(); 
-               
+                pbSnap.Image = Image.FromFile(snapPath);
+            }
+            else if (File.Exists(altPath))
+            {
+                pbSnap.Image = Image.FromFile(altPath);
+            }
+            else
+            {
+                string defaultPath = Path.Combine(Application.StartupPath, "csume", "artwork", "default.png");
+                if (File.Exists(defaultPath))
+                    pbSnap.Image = Image.FromFile(defaultPath);
+                else
+                    pbSnap.Image = null;
             }
         }
+
+
+
+
+        ////private void btnROMsLocation_Click(object sender, EventArgs e)
+        ////{
+        ////    FolderBrowserDialog fbd = new FolderBrowserDialog();
+        ////    fbd.Description = "Select your ROMs Location..";
+        ////    if (fbd.ShowDialog() == DialogResult.OK && fbd.SelectedPath.Length > 0)
+        ////    {
+        ////        txtRomsDefaultPath.Text = fbd.SelectedPath.ToString();
+        ////        Properties.Settings.Default.RomsDefaultPath = txtRomsDefaultPath.Text; 
+        ////        Properties.Settings.Default.Save(); 
+
+        ////    }
+        ////}
 
         private void readyUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3113,6 +3205,31 @@ namespace ArcadeConnector
                 if (_irc != null && _irc.IsConnected && user == txtNick.Text)
                     _irc.RfcPrivmsg(txtChannel.Text, $"[READY:{user}]");
             }
+        }
+
+        private void btnShowInfo_Click(object sender, EventArgs e)
+        {
+            rtbInfo.Visible = true;
+            btnShowInfo.Visible = false;
+            btnCloseInfo.Visible = true;
+            // Show a message box with game instructions
+           rtbInfo.Text = "\n   After entering a game, press [5] to insert a coin.\n\n" +
+                "   Press [1] or [2] for a 1 or 2 player game.\n\n   If in a Network game:\n" +
+                "   Player 2 needs to select [1] to start a 2 player game.\n\n" +
+                "   Press [N] to toggle network info.\n\n" +
+                "   Most Controls are [Ctrl], [Alt], and [Arrow keys].\n" +
+                "   This, however depends on the game.\n\n" +
+                "   Select [Tab] to setup input controls\n" +
+                "   or other in-game configurations if needed.\n\n" +
+                "   *Note: Some games are designed to only allow\n" +
+                "   a 2 player game on the same machine.  ";
+        }
+
+        private void btnCloseInfo_Click(object sender, EventArgs e)
+        {
+            btnShowInfo.Visible = true;
+            btnCloseInfo.Visible = false;
+            rtbInfo.Visible = false;
         }
 
 

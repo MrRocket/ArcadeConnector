@@ -262,5 +262,17 @@ namespace ArcadeConnector.Properties {
                 this["IRCAutoConnect"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RomName {
+            get {
+                return ((string)(this["RomName"]));
+            }
+            set {
+                this["RomName"] = value;
+            }
+        }
     }
 }

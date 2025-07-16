@@ -20,13 +20,15 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
 - Inline images and sound cues in chat (`/beer`, `/snooze`, `/sound cheer`)  
 - Smart join filtering (prevents joining while already in-game)  
 - Status-aware icons: online, afk, ingame, ready, moderator
-- Loaded ROM (images). When loading a ROM files, bezel artwork and snap screen are displayed.
+- Loaded ROM (images). When loading a ROM file, bezel artwork and snap screen are displayed.
+  Example: https://github.com/MrRocket/ArcadeConnector/blob/master/images/ac_siteshot2.png
   Some artwork is already included. They can be found in the csume/artwork folder.    
   
   You may find additional artwork here: 
   - https://www.progettosnaps.net/snapshots/
   - Under: Artwork Preview. 
   - Its archive will contain a artpreview.7z with over 4000 images.
+  - If you download the archive, extract the artpreview.7z into your csume/artwork folder.
 ---
 
 ## 🛠 Getting Started

@@ -68,6 +68,7 @@ Look in this folder for additional sounds that can played.
 + Additionaly, images can be displayed in chat using commands like:
 /beer or /soulsphere. The image files are located in the Images folder.
 Images and sounds can be mixed also into a single chat line eg:
+
 "Hi! /sound cheer /beer" 
 
 ---

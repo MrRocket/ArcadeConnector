@@ -43,13 +43,12 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
     If you're hosting a game over the internet, make sure to **forward both port 45291 (UDP)** and **port 5029 (UDP/TCP)** in your router or firewall.
 
 
-  
 
 ---
 
 ## 🚀 How to Use
 
-![Screenshot1](ArcadeConnector/shots/ac_shot1.png)
+![Screenshot1](images/ac_siteshot1.png)
 
 1. Launch the app  
 2. Enter a nickname and connect to IRC  
@@ -58,8 +57,18 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
 5. Use the integrated chat to communicate  
 6. When you return from the game, your **status and icon** update automatically  
 
-![Screenshot2](ArcadeConnector/shots/ac_shot2.png)
-![Screenshot3](ArcadeConnector/shots/ac_shot3.png)
+![Screenshot2](images/ac_siteshot2.png)
+![Screenshot3](images/ac_siteshot3.png)
+
++ In IRC Chat, commands like /sound cheer or /sound beback
+will play the sound cheer.wav or beback.wav and broadcast it
+to all connected clients. The sound files are located in the Sounds folder.
+Look in this folder for additional sounds that can played. 
+
++ Additionaly, images can be displayed in chat using commands like:
+/beer or /soulsphere. The image files are located in the Images folder.
+Images and sounds can be mixed also into a single chat line eg:
+"Hi! /sound cheer /beer" 
 
 ---
 
@@ -81,7 +90,7 @@ Arcade Connector provides a rich front-end experience with features like IRC cha
 - **Windows Forms** — native WinForms UI  
 - **.NET Framework 4.5+**
 
-> 💡 If you distribute a compiled version, include all applicable license files (e.g., MIT for MetroFramework, GPLv2 for SmartIRC4Net).
+> 💡 If you distribute a compiled version, include all applicable license files.
 
 ---
 

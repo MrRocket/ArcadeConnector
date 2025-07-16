@@ -1,0 +1,4 @@
+I wasn't able to upload csume.exe here due to githubs project file size limits
+
+You'll have to download it manually here:
+https://github.com/MrRocket/ArcadeConnector/releases/download/v1.0.1/csume.zip

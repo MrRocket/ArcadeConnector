@@ -1,0 +1,32 @@
+CSUME License Notice
+=====================
+
+CSUME is derived from the MAME and UME projects.
+
+MAME (Multiple Arcade Machine Emulator) and UME (Universal Machine Emulator)
+are licensed under a modified BSD license and/or GPL/LGPL components.
+
+The CSUME fork, originally created by MisterTea (https://github.com/MisterTea/MAMEHub),
+inherits those licenses. This launcher (Arcade Connector) includes a compiled
+binary of CSUME that may differ from the current MAMEHub repository version.
+
+------------------------------------------------------------------------------
+
+You are free to:
+
+Use, compile, and distribute CSUME for **non-commercial** purposes  
+Modify and redistribute the binary or source as long as attribution is preserved  
+Include it as part of a larger open-source project
+
+You may **not**:
+
+Sell the CSUME binary or project for profit  
+Distribute without including this license notice  
+Distribute without crediting the MAME, UME, and CSUME authors
+
+------------------------------------------------------------------------------
+
+Credits:
+
+- MAME © The MAME Team – https://www.mamedev.org/
+- UME / MAMEHub / CSUME fork © MisterTea – https://github.com/MisterTea/MAMEHub

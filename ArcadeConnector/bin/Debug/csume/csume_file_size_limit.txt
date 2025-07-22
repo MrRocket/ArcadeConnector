@@ -1,7 +1,6 @@
-I wasn't able to upload csume.exe here due to githubs project file size limits being less than 25mb.
+csume.exe missing? 
 
-You'll have to download the release manually here:
-https://github.com/MrRocket/ArcadeConnector/releases/download/v1.0.1/ArcadeConnector.zip
+I wasn't able to upload csume.exe here due to githubs project file size limits
 
-All that should be needed is the csume.exe. you can either extract the full package or 
-copy and paste the csume.exe from the archive to this location. eg ..\csume folder.
+You'll have to download it manually here:
+https://github.com/MrRocket/ArcadeConnector/releases/download/v1.0.1/csume.zip

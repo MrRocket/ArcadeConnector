@@ -1,0 +1,12 @@
+[11:27:17] [STATUS] Connection to IRC lost.
+[11:27:17] [MrRocket] has lost connection to IRC.
+[11:27:39] [STATUS] Connection to IRC lost.
+[11:27:39] [MrRocket] has lost connection to IRC.
+[11:32:35] [STATUS] Connection to IRC lost.
+[11:32:35] [MrRocket] has lost connection to IRC.
+[12:42:54] [STATUS] Connection to IRC lost.
+[12:42:54] [MrRocket] has lost connection to IRC.
+[21:19:19] [STATUS] Connection to IRC lost.
+[21:19:19] [MrRocket] has lost connection to IRC.
+[21:56:20] [STATUS] Connection to IRC lost.
+[21:56:20] [MrRocket] has lost connection to IRC.

@@ -95,6 +95,10 @@ Images and sounds can be mixed also into a single chat line eg:
   - Source: [SmartIRC4Net GitHub](https://github.com/meebey/SmartIrc4net)  
   - [SmartIRC4Net (GPLv2)](docs/licenses/LICENSE_SmartIRC4Net.txt)
 
+- **Hunspell Spell Checker Library** — Spell Checker library  
+  - Source: [Hunspell Spell Checker GitHub](https://github.com/WeCantSpell/Hunspell)  
+  - [Hunspell Spell Checker (MIT)](docs/licenses/LICENSE_Hunspell.txt)
+
 - **System.Media.SoundPlayer** — built-in .NET sound API  
 - **Windows Forms** — native WinForms UI  
 - **.NET Framework 4.5+**

@@ -40,31 +40,30 @@ namespace ArcadeConnector
             this.lblGameIsHosted = new System.Windows.Forms.Label();
             this.TabMain = new MetroFramework.Controls.MetroTabControl();
             this.tabIRC = new MetroFramework.Controls.MetroTabPage();
+            this.lblUserTyping = new System.Windows.Forms.Label();
+            this.txtInput = new System.Windows.Forms.RichTextBox();
+            this.btnTestIcons = new System.Windows.Forms.Button();
             this.chkIRCAutoConnect = new MetroFramework.Controls.MetroCheckBox();
+            this.lblDownloadProgress = new System.Windows.Forms.Label();
             this.txtChat = new System.Windows.Forms.RichTextBox();
+            this.txtChannel = new MetroFramework.Controls.MetroTextBox();
+            this.txtPort = new MetroFramework.Controls.MetroTextBox();
             this.lvUsers = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.txtServer = new MetroFramework.Controls.MetroTextBox();
             this.txtNick = new MetroFramework.Controls.MetroTextBox();
             this.btnDisconnect = new MetroFramework.Controls.MetroButton();
             this.btnSendIRC = new MetroFramework.Controls.MetroButton();
-            this.txtInput = new MetroFramework.Controls.MetroTextBox();
             this.btnIRCConnect = new MetroFramework.Controls.MetroButton();
             this.tabTest = new MetroFramework.Controls.MetroTabPage();
-            this.lblLoadedROM = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.txtSaveFilesLocation = new MetroFramework.Controls.MetroTextBox();
-            this.lblServerName = new MetroFramework.Controls.MetroLabel();
             this.txtRomsDefaultPath = new MetroFramework.Controls.MetroTextBox();
             this.btnSaveFiles = new MetroFramework.Controls.MetroButton();
-            this.txtServerName = new MetroFramework.Controls.MetroTextBox();
             this.txtRomPath = new MetroFramework.Controls.MetroTextBox();
-            this.btnBrowseRom = new MetroFramework.Controls.MetroButton();
             this.txtCSUMELocation = new MetroFramework.Controls.MetroTextBox();
             this.cmbEngineSelector = new MetroFramework.Controls.MetroComboBox();
             this.cmbEngine = new MetroFramework.Controls.MetroComboBox();
             this.txtCMDParameters = new MetroFramework.Controls.MetroTextBox();
-            this.btnLaunch = new MetroFramework.Controls.MetroButton();
-            this.chkHostTest = new MetroFramework.Controls.MetroCheckBox();
             this.tabHostedServers = new MetroFramework.Controls.MetroTabPage();
             this.dgHostedServer = new MetroFramework.Controls.MetroGrid();
             this.Engine = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,31 +71,38 @@ namespace ArcadeConnector
             this.IPAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Port = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Addons = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtChannel = new MetroFramework.Controls.MetroTextBox();
-            this.txtPort = new MetroFramework.Controls.MetroTextBox();
-            this.txtServer = new MetroFramework.Controls.MetroTextBox();
-            this.lblDownloadProgress = new System.Windows.Forms.Label();
             this.contextMenuUser = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnTestIcons = new System.Windows.Forms.Button();
-            this.rtbWelcome = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLaunch = new MetroFramework.Controls.MetroButton();
+            this.chkHostTest = new MetroFramework.Controls.MetroCheckBox();
+            this.btnBrowseRom = new MetroFramework.Controls.MetroButton();
             this.btnShowInfo = new MetroFramework.Controls.MetroButton();
+            this.lblServerName = new MetroFramework.Controls.MetroLabel();
             this.btnCloseInfo = new MetroFramework.Controls.MetroButton();
-            this.pbSnap = new System.Windows.Forms.PictureBox();
-            this.readyUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.txtServerName = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.lblLoadedROM = new MetroFramework.Controls.MetroLabel();
             this.rtbInfo = new System.Windows.Forms.RichTextBox();
+            this.pbSnap = new System.Windows.Forms.PictureBox();
+            this.pbWelcome = new System.Windows.Forms.PictureBox();
+            this.readyUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TabMain.SuspendLayout();
             this.tabIRC.SuspendLayout();
             this.tabTest.SuspendLayout();
             this.tabHostedServers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgHostedServer)).BeginInit();
             this.contextMenuUser.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSnap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWelcome)).BeginInit();
             this.SuspendLayout();
             // 
             // WadName
             // 
-            this.WadName.Location = new System.Drawing.Point(165, 354);
+            this.WadName.Location = new System.Drawing.Point(169, 364);
             this.WadName.Multiline = true;
             this.WadName.Name = "WadName";
             this.WadName.Size = new System.Drawing.Size(16, 10);
@@ -108,7 +114,7 @@ namespace ArcadeConnector
             this.lblProcessStatus.AutoSize = true;
             this.lblProcessStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProcessStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lblProcessStatus.Location = new System.Drawing.Point(16, 494);
+            this.lblProcessStatus.Location = new System.Drawing.Point(444, 455);
             this.lblProcessStatus.Name = "lblProcessStatus";
             this.lblProcessStatus.Size = new System.Drawing.Size(117, 13);
             this.lblProcessStatus.TabIndex = 84;
@@ -116,10 +122,12 @@ namespace ArcadeConnector
             // 
             // lblGameIsHosted
             // 
+            this.lblGameIsHosted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblGameIsHosted.AutoSize = true;
+            this.lblGameIsHosted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.lblGameIsHosted.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGameIsHosted.ForeColor = System.Drawing.Color.Teal;
-            this.lblGameIsHosted.Location = new System.Drawing.Point(16, 453);
+            this.lblGameIsHosted.Location = new System.Drawing.Point(18, 533);
             this.lblGameIsHosted.Name = "lblGameIsHosted";
             this.lblGameIsHosted.Size = new System.Drawing.Size(72, 12);
             this.lblGameIsHosted.TabIndex = 89;
@@ -127,15 +135,18 @@ namespace ArcadeConnector
             // 
             // TabMain
             // 
+            this.TabMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.TabMain.Controls.Add(this.tabIRC);
             this.TabMain.Controls.Add(this.tabTest);
             this.TabMain.Controls.Add(this.tabHostedServers);
             this.TabMain.FontWeight = MetroFramework.MetroTabControlWeight.Bold;
-            this.TabMain.Location = new System.Drawing.Point(12, 21);
+            this.TabMain.Location = new System.Drawing.Point(12, 14);
             this.TabMain.Name = "TabMain";
-            this.TabMain.SelectedIndex = 1;
-            this.TabMain.Size = new System.Drawing.Size(380, 414);
+            this.TabMain.SelectedIndex = 0;
+            this.TabMain.Size = new System.Drawing.Size(588, 516);
             this.TabMain.Style = MetroFramework.MetroColorStyle.Brown;
             this.TabMain.TabIndex = 99;
             this.TabMain.Theme = MetroFramework.MetroThemeStyle.Dark;
@@ -143,13 +154,21 @@ namespace ArcadeConnector
             // 
             // tabIRC
             // 
+            this.tabIRC.BackColor = System.Drawing.Color.Transparent;
+            this.tabIRC.Controls.Add(this.lblUserTyping);
+            this.tabIRC.Controls.Add(this.txtInput);
+            this.tabIRC.Controls.Add(this.btnTestIcons);
             this.tabIRC.Controls.Add(this.chkIRCAutoConnect);
+            this.tabIRC.Controls.Add(this.lblDownloadProgress);
             this.tabIRC.Controls.Add(this.txtChat);
+            this.tabIRC.Controls.Add(this.txtChannel);
+            this.tabIRC.Controls.Add(this.txtPort);
             this.tabIRC.Controls.Add(this.lvUsers);
+            this.tabIRC.Controls.Add(this.txtServer);
+            this.tabIRC.Controls.Add(this.lblProcessStatus);
             this.tabIRC.Controls.Add(this.txtNick);
             this.tabIRC.Controls.Add(this.btnDisconnect);
             this.tabIRC.Controls.Add(this.btnSendIRC);
-            this.tabIRC.Controls.Add(this.txtInput);
             this.tabIRC.Controls.Add(this.btnIRCConnect);
             this.tabIRC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabIRC.HorizontalScrollbarBarColor = true;
@@ -157,13 +176,48 @@ namespace ArcadeConnector
             this.tabIRC.HorizontalScrollbarSize = 10;
             this.tabIRC.Location = new System.Drawing.Point(4, 41);
             this.tabIRC.Name = "tabIRC";
-            this.tabIRC.Size = new System.Drawing.Size(372, 369);
+            this.tabIRC.Size = new System.Drawing.Size(580, 471);
             this.tabIRC.TabIndex = 5;
             this.tabIRC.Text = "IRC Lobby";
             this.tabIRC.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.tabIRC.VerticalScrollbarBarColor = true;
             this.tabIRC.VerticalScrollbarHighlightOnWheel = false;
             this.tabIRC.VerticalScrollbarSize = 10;
+            // 
+            // lblUserTyping
+            // 
+            this.lblUserTyping.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblUserTyping.AutoSize = true;
+            this.lblUserTyping.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblUserTyping.Location = new System.Drawing.Point(13, 416);
+            this.lblUserTyping.Name = "lblUserTyping";
+            this.lblUserTyping.Size = new System.Drawing.Size(41, 13);
+            this.lblUserTyping.TabIndex = 146;
+            this.lblUserTyping.Text = "label1";
+            // 
+            // txtInput
+            // 
+            this.txtInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInput.BackColor = System.Drawing.SystemColors.MenuText;
+            this.txtInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtInput.ForeColor = System.Drawing.SystemColors.Menu;
+            this.txtInput.Location = new System.Drawing.Point(152, 381);
+            this.txtInput.Name = "txtInput";
+            this.txtInput.Size = new System.Drawing.Size(382, 22);
+            this.txtInput.TabIndex = 145;
+            this.txtInput.Text = "";
+            // 
+            // btnTestIcons
+            // 
+            this.btnTestIcons.Location = new System.Drawing.Point(491, 416);
+            this.btnTestIcons.Name = "btnTestIcons";
+            this.btnTestIcons.Size = new System.Drawing.Size(70, 23);
+            this.btnTestIcons.TabIndex = 101;
+            this.btnTestIcons.Text = "test icons";
+            this.btnTestIcons.UseVisualStyleBackColor = true;
+            this.btnTestIcons.Visible = false;
+            this.btnTestIcons.Click += new System.EventHandler(this.btnTestIcons_Click);
             // 
             // chkIRCAutoConnect
             // 
@@ -176,618 +230,34 @@ namespace ArcadeConnector
             this.chkIRCAutoConnect.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.chkIRCAutoConnect.UseSelectable = true;
             // 
+            // lblDownloadProgress
+            // 
+            this.lblDownloadProgress.AutoSize = true;
+            this.lblDownloadProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDownloadProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblDownloadProgress.Location = new System.Drawing.Point(437, 426);
+            this.lblDownloadProgress.Name = "lblDownloadProgress";
+            this.lblDownloadProgress.Size = new System.Drawing.Size(43, 13);
+            this.lblDownloadProgress.TabIndex = 100;
+            this.lblDownloadProgress.Text = "Status";
+            // 
             // txtChat
             // 
+            this.txtChat.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtChat.BackColor = System.Drawing.SystemColors.MenuText;
             this.txtChat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtChat.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtChat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtChat.ForeColor = System.Drawing.SystemColors.Menu;
             this.txtChat.Location = new System.Drawing.Point(151, 47);
             this.txtChat.Name = "txtChat";
-            this.txtChat.Size = new System.Drawing.Size(216, 289);
+            this.txtChat.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.txtChat.Size = new System.Drawing.Size(426, 326);
             this.txtChat.TabIndex = 141;
             this.txtChat.Text = "";
             this.txtChat.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtChat_MouseDown);
-            // 
-            // lvUsers
-            // 
-            this.lvUsers.BackColor = System.Drawing.SystemColors.InfoText;
-            this.lvUsers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lvUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvUsers.ForeColor = System.Drawing.Color.MintCream;
-            this.lvUsers.FullRowSelect = true;
-            this.lvUsers.HideSelection = false;
-            this.lvUsers.HoverSelection = true;
-            this.lvUsers.Location = new System.Drawing.Point(4, 47);
-            this.lvUsers.MultiSelect = false;
-            this.lvUsers.Name = "lvUsers";
-            this.lvUsers.Size = new System.Drawing.Size(141, 319);
-            this.lvUsers.SmallImageList = this.imageList1;
-            this.lvUsers.TabIndex = 140;
-            this.lvUsers.UseCompatibleStateImageBehavior = false;
-            this.lvUsers.View = System.Windows.Forms.View.List;
-            this.lvUsers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvUsers_MouseDown);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "online.png");
-            this.imageList1.Images.SetKeyName(1, "snooze.png");
-            this.imageList1.Images.SetKeyName(2, "ingame.png");
-            this.imageList1.Images.SetKeyName(3, "is_moderator.png");
-            // 
-            // txtNick
-            // 
-            // 
-            // 
-            // 
-            this.txtNick.CustomButton.Image = null;
-            this.txtNick.CustomButton.Location = new System.Drawing.Point(119, 1);
-            this.txtNick.CustomButton.Name = "";
-            this.txtNick.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtNick.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtNick.CustomButton.TabIndex = 1;
-            this.txtNick.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtNick.CustomButton.UseSelectable = true;
-            this.txtNick.CustomButton.Visible = false;
-            this.txtNick.Lines = new string[0];
-            this.txtNick.Location = new System.Drawing.Point(4, 18);
-            this.txtNick.MaxLength = 8;
-            this.txtNick.Name = "txtNick";
-            this.txtNick.PasswordChar = '\0';
-            this.txtNick.PromptText = "IRC User Name";
-            this.txtNick.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtNick.SelectedText = "";
-            this.txtNick.SelectionLength = 0;
-            this.txtNick.SelectionStart = 0;
-            this.txtNick.ShortcutsEnabled = true;
-            this.txtNick.Size = new System.Drawing.Size(141, 23);
-            this.txtNick.TabIndex = 139;
-            this.txtNick.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.txtNick.UseSelectable = true;
-            this.txtNick.WaterMark = "IRC User Name";
-            this.txtNick.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtNick.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // btnDisconnect
-            // 
-            this.btnDisconnect.Location = new System.Drawing.Point(295, 17);
-            this.btnDisconnect.Name = "btnDisconnect";
-            this.btnDisconnect.Size = new System.Drawing.Size(77, 24);
-            this.btnDisconnect.TabIndex = 138;
-            this.btnDisconnect.Text = "Disconnect";
-            this.btnDisconnect.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnDisconnect.UseSelectable = true;
-            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
-            // 
-            // btnSendIRC
-            // 
-            this.btnSendIRC.Location = new System.Drawing.Point(330, 342);
-            this.btnSendIRC.Name = "btnSendIRC";
-            this.btnSendIRC.Size = new System.Drawing.Size(37, 24);
-            this.btnSendIRC.TabIndex = 132;
-            this.btnSendIRC.Text = "Send";
-            this.btnSendIRC.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnSendIRC.UseSelectable = true;
-            this.btnSendIRC.Click += new System.EventHandler(this.btnSendIRC_Click);
-            // 
-            // txtInput
-            // 
-            this.txtInput.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            // 
-            // 
-            // 
-            this.txtInput.CustomButton.Image = null;
-            this.txtInput.CustomButton.Location = new System.Drawing.Point(157, 2);
-            this.txtInput.CustomButton.Name = "";
-            this.txtInput.CustomButton.Size = new System.Drawing.Size(17, 17);
-            this.txtInput.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtInput.CustomButton.TabIndex = 1;
-            this.txtInput.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtInput.CustomButton.UseSelectable = true;
-            this.txtInput.CustomButton.Visible = false;
-            this.txtInput.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.txtInput.Lines = new string[0];
-            this.txtInput.Location = new System.Drawing.Point(151, 344);
-            this.txtInput.MaxLength = 90000;
-            this.txtInput.Name = "txtInput";
-            this.txtInput.PasswordChar = '\0';
-            this.txtInput.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtInput.SelectedText = "";
-            this.txtInput.SelectionLength = 0;
-            this.txtInput.SelectionStart = 0;
-            this.txtInput.ShortcutsEnabled = true;
-            this.txtInput.Size = new System.Drawing.Size(177, 22);
-            this.txtInput.Style = MetroFramework.MetroColorStyle.Silver;
-            this.txtInput.TabIndex = 131;
-            this.txtInput.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.txtInput.UseCustomBackColor = true;
-            this.txtInput.UseCustomForeColor = true;
-            this.txtInput.UseSelectable = true;
-            this.txtInput.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtInput.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // btnIRCConnect
-            // 
-            this.btnIRCConnect.Location = new System.Drawing.Point(151, 17);
-            this.btnIRCConnect.Name = "btnIRCConnect";
-            this.btnIRCConnect.Size = new System.Drawing.Size(71, 24);
-            this.btnIRCConnect.TabIndex = 117;
-            this.btnIRCConnect.Text = "Connect";
-            this.btnIRCConnect.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnIRCConnect.UseSelectable = true;
-            this.btnIRCConnect.Click += new System.EventHandler(this.btnIRCConnect_Click);
-            // 
-            // tabTest
-            // 
-            this.tabTest.Controls.Add(this.btnCloseInfo);
-            this.tabTest.Controls.Add(this.btnShowInfo);
-            this.tabTest.Controls.Add(this.lblLoadedROM);
-            this.tabTest.Controls.Add(this.metroLabel1);
-            this.tabTest.Controls.Add(this.txtSaveFilesLocation);
-            this.tabTest.Controls.Add(this.lblServerName);
-            this.tabTest.Controls.Add(this.txtRomsDefaultPath);
-            this.tabTest.Controls.Add(this.btnSaveFiles);
-            this.tabTest.Controls.Add(this.txtServerName);
-            this.tabTest.Controls.Add(this.txtRomPath);
-            this.tabTest.Controls.Add(this.btnBrowseRom);
-            this.tabTest.Controls.Add(this.txtCSUMELocation);
-            this.tabTest.Controls.Add(this.cmbEngineSelector);
-            this.tabTest.Controls.Add(this.cmbEngine);
-            this.tabTest.Controls.Add(this.WadName);
-            this.tabTest.Controls.Add(this.txtCMDParameters);
-            this.tabTest.Controls.Add(this.btnLaunch);
-            this.tabTest.Controls.Add(this.chkHostTest);
-            this.tabTest.Controls.Add(this.rtbInfo);
-            this.tabTest.Controls.Add(this.rtbWelcome);
-            this.tabTest.Controls.Add(this.pbSnap);
-            this.tabTest.HorizontalScrollbarBarColor = true;
-            this.tabTest.HorizontalScrollbarHighlightOnWheel = false;
-            this.tabTest.HorizontalScrollbarSize = 10;
-            this.tabTest.Location = new System.Drawing.Point(4, 41);
-            this.tabTest.Name = "tabTest";
-            this.tabTest.Size = new System.Drawing.Size(372, 369);
-            this.tabTest.TabIndex = 2;
-            this.tabTest.Text = "Setup|Launch";
-            this.tabTest.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.tabTest.VerticalScrollbarBarColor = true;
-            this.tabTest.VerticalScrollbarHighlightOnWheel = false;
-            this.tabTest.VerticalScrollbarSize = 10;
-            // 
-            // lblLoadedROM
-            // 
-            this.lblLoadedROM.AutoSize = true;
-            this.lblLoadedROM.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.lblLoadedROM.Location = new System.Drawing.Point(99, 265);
-            this.lblLoadedROM.Name = "lblLoadedROM";
-            this.lblLoadedROM.Size = new System.Drawing.Size(69, 19);
-            this.lblLoadedROM.TabIndex = 134;
-            this.lblLoadedROM.Text = "ROM File";
-            this.lblLoadedROM.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(11, 265);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(93, 19);
-            this.metroLabel1.TabIndex = 133;
-            this.metroLabel1.Text = "Loaded ROM:";
-            this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // txtSaveFilesLocation
-            // 
-            // 
-            // 
-            // 
-            this.txtSaveFilesLocation.CustomButton.Image = null;
-            this.txtSaveFilesLocation.CustomButton.Location = new System.Drawing.Point(-12, 1);
-            this.txtSaveFilesLocation.CustomButton.Name = "";
-            this.txtSaveFilesLocation.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtSaveFilesLocation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtSaveFilesLocation.CustomButton.TabIndex = 1;
-            this.txtSaveFilesLocation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtSaveFilesLocation.CustomButton.UseSelectable = true;
-            this.txtSaveFilesLocation.CustomButton.Visible = false;
-            this.txtSaveFilesLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtSaveFilesLocation.Lines = new string[0];
-            this.txtSaveFilesLocation.Location = new System.Drawing.Point(2, 343);
-            this.txtSaveFilesLocation.MaxLength = 32767;
-            this.txtSaveFilesLocation.Name = "txtSaveFilesLocation";
-            this.txtSaveFilesLocation.PasswordChar = '\0';
-            this.txtSaveFilesLocation.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtSaveFilesLocation.SelectedText = "";
-            this.txtSaveFilesLocation.SelectionLength = 0;
-            this.txtSaveFilesLocation.SelectionStart = 0;
-            this.txtSaveFilesLocation.ShortcutsEnabled = true;
-            this.txtSaveFilesLocation.Size = new System.Drawing.Size(10, 23);
-            this.txtSaveFilesLocation.Style = MetroFramework.MetroColorStyle.Green;
-            this.txtSaveFilesLocation.TabIndex = 119;
-            this.txtSaveFilesLocation.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.txtSaveFilesLocation.UseCustomForeColor = true;
-            this.txtSaveFilesLocation.UseSelectable = true;
-            this.txtSaveFilesLocation.Visible = false;
-            this.txtSaveFilesLocation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtSaveFilesLocation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // lblServerName
-            // 
-            this.lblServerName.AutoSize = true;
-            this.lblServerName.Location = new System.Drawing.Point(7, 290);
-            this.lblServerName.Name = "lblServerName";
-            this.lblServerName.Size = new System.Drawing.Size(90, 19);
-            this.lblServerName.TabIndex = 132;
-            this.lblServerName.Text = "Server Name:";
-            this.lblServerName.Theme = MetroFramework.MetroThemeStyle.Dark;
-            // 
-            // txtRomsDefaultPath
-            // 
-            // 
-            // 
-            // 
-            this.txtRomsDefaultPath.CustomButton.Image = null;
-            this.txtRomsDefaultPath.CustomButton.Location = new System.Drawing.Point(-6, 1);
-            this.txtRomsDefaultPath.CustomButton.Name = "";
-            this.txtRomsDefaultPath.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtRomsDefaultPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtRomsDefaultPath.CustomButton.TabIndex = 1;
-            this.txtRomsDefaultPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtRomsDefaultPath.CustomButton.UseSelectable = true;
-            this.txtRomsDefaultPath.CustomButton.Visible = false;
-            this.txtRomsDefaultPath.Lines = new string[0];
-            this.txtRomsDefaultPath.Location = new System.Drawing.Point(99, 343);
-            this.txtRomsDefaultPath.MaxLength = 32767;
-            this.txtRomsDefaultPath.Name = "txtRomsDefaultPath";
-            this.txtRomsDefaultPath.PasswordChar = '\0';
-            this.txtRomsDefaultPath.PromptText = "ROMs Location";
-            this.txtRomsDefaultPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtRomsDefaultPath.SelectedText = "";
-            this.txtRomsDefaultPath.SelectionLength = 0;
-            this.txtRomsDefaultPath.SelectionStart = 0;
-            this.txtRomsDefaultPath.ShortcutsEnabled = true;
-            this.txtRomsDefaultPath.Size = new System.Drawing.Size(16, 23);
-            this.txtRomsDefaultPath.Style = MetroFramework.MetroColorStyle.Orange;
-            this.txtRomsDefaultPath.TabIndex = 123;
-            this.txtRomsDefaultPath.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.txtRomsDefaultPath.UseSelectable = true;
-            this.txtRomsDefaultPath.Visible = false;
-            this.txtRomsDefaultPath.WaterMark = "ROMs Location";
-            this.txtRomsDefaultPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtRomsDefaultPath.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // btnSaveFiles
-            // 
-            this.btnSaveFiles.Location = new System.Drawing.Point(18, 343);
-            this.btnSaveFiles.Name = "btnSaveFiles";
-            this.btnSaveFiles.Size = new System.Drawing.Size(10, 23);
-            this.btnSaveFiles.TabIndex = 118;
-            this.btnSaveFiles.Text = "File Download Location";
-            this.btnSaveFiles.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnSaveFiles.UseSelectable = true;
-            this.btnSaveFiles.Visible = false;
-            this.btnSaveFiles.Click += new System.EventHandler(this.btnSaveFiles_Click);
-            // 
-            // txtServerName
-            // 
-            this.txtServerName.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            // 
-            // 
-            // 
-            this.txtServerName.CustomButton.Image = null;
-            this.txtServerName.CustomButton.Location = new System.Drawing.Point(132, 1);
-            this.txtServerName.CustomButton.Name = "";
-            this.txtServerName.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtServerName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtServerName.CustomButton.TabIndex = 1;
-            this.txtServerName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtServerName.CustomButton.UseSelectable = true;
-            this.txtServerName.CustomButton.Visible = false;
-            this.txtServerName.ForeColor = System.Drawing.Color.Gray;
-            this.txtServerName.Lines = new string[0];
-            this.txtServerName.Location = new System.Drawing.Point(7, 312);
-            this.txtServerName.MaxLength = 20;
-            this.txtServerName.Name = "txtServerName";
-            this.txtServerName.PasswordChar = '\0';
-            this.txtServerName.PromptText = "Max 32 Characters";
-            this.txtServerName.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtServerName.SelectedText = "";
-            this.txtServerName.SelectionLength = 0;
-            this.txtServerName.SelectionStart = 0;
-            this.txtServerName.ShortcutsEnabled = true;
-            this.txtServerName.Size = new System.Drawing.Size(154, 23);
-            this.txtServerName.Style = MetroFramework.MetroColorStyle.Green;
-            this.txtServerName.TabIndex = 131;
-            this.txtServerName.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.txtServerName.UseCustomBackColor = true;
-            this.txtServerName.UseCustomForeColor = true;
-            this.txtServerName.UseSelectable = true;
-            this.txtServerName.WaterMark = "Max 32 Characters";
-            this.txtServerName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtServerName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // txtRomPath
-            // 
-            this.txtRomPath.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            // 
-            // 
-            // 
-            this.txtRomPath.CustomButton.Image = null;
-            this.txtRomPath.CustomButton.Location = new System.Drawing.Point(-6, 1);
-            this.txtRomPath.CustomButton.Name = "";
-            this.txtRomPath.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtRomPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtRomPath.CustomButton.TabIndex = 1;
-            this.txtRomPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtRomPath.CustomButton.UseSelectable = true;
-            this.txtRomPath.CustomButton.Visible = false;
-            this.txtRomPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtRomPath.Lines = new string[0];
-            this.txtRomPath.Location = new System.Drawing.Point(56, 341);
-            this.txtRomPath.MaxLength = 32767;
-            this.txtRomPath.Name = "txtRomPath";
-            this.txtRomPath.PasswordChar = '\0';
-            this.txtRomPath.PromptText = "Add ROM File";
-            this.txtRomPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtRomPath.SelectedText = "";
-            this.txtRomPath.SelectionLength = 0;
-            this.txtRomPath.SelectionStart = 0;
-            this.txtRomPath.ShortcutsEnabled = true;
-            this.txtRomPath.Size = new System.Drawing.Size(16, 23);
-            this.txtRomPath.Style = MetroFramework.MetroColorStyle.Green;
-            this.txtRomPath.TabIndex = 130;
-            this.txtRomPath.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.txtRomPath.UseCustomForeColor = true;
-            this.txtRomPath.UseSelectable = true;
-            this.txtRomPath.Visible = false;
-            this.txtRomPath.WaterMark = "Add ROM File";
-            this.txtRomPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtRomPath.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // btnBrowseRom
-            // 
-            this.btnBrowseRom.Location = new System.Drawing.Point(223, 265);
-            this.btnBrowseRom.Name = "btnBrowseRom";
-            this.btnBrowseRom.Size = new System.Drawing.Size(146, 32);
-            this.btnBrowseRom.TabIndex = 129;
-            this.btnBrowseRom.Text = "Load ROM File";
-            this.btnBrowseRom.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnBrowseRom.UseSelectable = true;
-            this.btnBrowseRom.Click += new System.EventHandler(this.btnBrowseRom_Click);
-            // 
-            // txtCSUMELocation
-            // 
-            // 
-            // 
-            // 
-            this.txtCSUMELocation.CustomButton.Image = null;
-            this.txtCSUMELocation.CustomButton.Location = new System.Drawing.Point(-6, 1);
-            this.txtCSUMELocation.CustomButton.Name = "";
-            this.txtCSUMELocation.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txtCSUMELocation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtCSUMELocation.CustomButton.TabIndex = 1;
-            this.txtCSUMELocation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtCSUMELocation.CustomButton.UseSelectable = true;
-            this.txtCSUMELocation.CustomButton.Visible = false;
-            this.txtCSUMELocation.Lines = new string[0];
-            this.txtCSUMELocation.Location = new System.Drawing.Point(121, 343);
-            this.txtCSUMELocation.MaxLength = 32767;
-            this.txtCSUMELocation.Name = "txtCSUMELocation";
-            this.txtCSUMELocation.PasswordChar = '\0';
-            this.txtCSUMELocation.PromptText = "CSUME Engine Location";
-            this.txtCSUMELocation.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtCSUMELocation.SelectedText = "";
-            this.txtCSUMELocation.SelectionLength = 0;
-            this.txtCSUMELocation.SelectionStart = 0;
-            this.txtCSUMELocation.ShortcutsEnabled = true;
-            this.txtCSUMELocation.Size = new System.Drawing.Size(16, 23);
-            this.txtCSUMELocation.Style = MetroFramework.MetroColorStyle.Orange;
-            this.txtCSUMELocation.TabIndex = 121;
-            this.txtCSUMELocation.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.txtCSUMELocation.UseSelectable = true;
-            this.txtCSUMELocation.Visible = false;
-            this.txtCSUMELocation.WaterMark = "CSUME Engine Location";
-            this.txtCSUMELocation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtCSUMELocation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // cmbEngineSelector
-            // 
-            this.cmbEngineSelector.FontSize = MetroFramework.MetroComboBoxSize.Small;
-            this.cmbEngineSelector.FormattingEnabled = true;
-            this.cmbEngineSelector.ItemHeight = 19;
-            this.cmbEngineSelector.Items.AddRange(new object[] {
-            "CSUME"});
-            this.cmbEngineSelector.Location = new System.Drawing.Point(78, 341);
-            this.cmbEngineSelector.Name = "cmbEngineSelector";
-            this.cmbEngineSelector.Size = new System.Drawing.Size(16, 25);
-            this.cmbEngineSelector.Style = MetroFramework.MetroColorStyle.Orange;
-            this.cmbEngineSelector.TabIndex = 120;
-            this.cmbEngineSelector.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.cmbEngineSelector.UseSelectable = true;
-            this.cmbEngineSelector.Visible = false;
-            this.cmbEngineSelector.SelectedIndexChanged += new System.EventHandler(this.cmbEngineSelector_SelectedIndexChanged);
-            // 
-            // cmbEngine
-            // 
-            this.cmbEngine.FontSize = MetroFramework.MetroComboBoxSize.Small;
-            this.cmbEngine.FormattingEnabled = true;
-            this.cmbEngine.ItemHeight = 19;
-            this.cmbEngine.Items.AddRange(new object[] {
-            "CSUME"});
-            this.cmbEngine.Location = new System.Drawing.Point(34, 341);
-            this.cmbEngine.Name = "cmbEngine";
-            this.cmbEngine.Size = new System.Drawing.Size(16, 25);
-            this.cmbEngine.Style = MetroFramework.MetroColorStyle.Orange;
-            this.cmbEngine.TabIndex = 115;
-            this.cmbEngine.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.cmbEngine.UseSelectable = true;
-            this.cmbEngine.Visible = false;
-            // 
-            // txtCMDParameters
-            // 
-            // 
-            // 
-            // 
-            this.txtCMDParameters.CustomButton.Image = null;
-            this.txtCMDParameters.CustomButton.Location = new System.Drawing.Point(4, 1);
-            this.txtCMDParameters.CustomButton.Name = "";
-            this.txtCMDParameters.CustomButton.Size = new System.Drawing.Size(11, 11);
-            this.txtCMDParameters.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txtCMDParameters.CustomButton.TabIndex = 1;
-            this.txtCMDParameters.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txtCMDParameters.CustomButton.UseSelectable = true;
-            this.txtCMDParameters.CustomButton.Visible = false;
-            this.txtCMDParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtCMDParameters.Lines = new string[0];
-            this.txtCMDParameters.Location = new System.Drawing.Point(143, 351);
-            this.txtCMDParameters.MaxLength = 32767;
-            this.txtCMDParameters.Multiline = true;
-            this.txtCMDParameters.Name = "txtCMDParameters";
-            this.txtCMDParameters.PasswordChar = '\0';
-            this.txtCMDParameters.PromptText = "...";
-            this.txtCMDParameters.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtCMDParameters.SelectedText = "";
-            this.txtCMDParameters.SelectionLength = 0;
-            this.txtCMDParameters.SelectionStart = 0;
-            this.txtCMDParameters.ShortcutsEnabled = true;
-            this.txtCMDParameters.Size = new System.Drawing.Size(16, 13);
-            this.txtCMDParameters.Style = MetroFramework.MetroColorStyle.Brown;
-            this.txtCMDParameters.TabIndex = 120;
-            this.txtCMDParameters.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.txtCMDParameters.UseSelectable = true;
-            this.txtCMDParameters.Visible = false;
-            this.txtCMDParameters.WaterMark = "...";
-            this.txtCMDParameters.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txtCMDParameters.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
-            // btnLaunch
-            // 
-            this.btnLaunch.Location = new System.Drawing.Point(223, 327);
-            this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(146, 39);
-            this.btnLaunch.TabIndex = 112;
-            this.btnLaunch.Text = "Launch";
-            this.btnLaunch.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.btnLaunch.UseSelectable = true;
-            this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
-            // 
-            // chkHostTest
-            // 
-            this.chkHostTest.AutoSize = true;
-            this.chkHostTest.Location = new System.Drawing.Point(223, 303);
-            this.chkHostTest.Name = "chkHostTest";
-            this.chkHostTest.Size = new System.Drawing.Size(82, 15);
-            this.chkHostTest.TabIndex = 114;
-            this.chkHostTest.Text = "Host Game";
-            this.chkHostTest.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.chkHostTest.UseSelectable = true;
-            this.chkHostTest.CheckedChanged += new System.EventHandler(this.chkHostTest_CheckedChanged);
-            // 
-            // tabHostedServers
-            // 
-            this.tabHostedServers.Controls.Add(this.dgHostedServer);
-            this.tabHostedServers.HorizontalScrollbarBarColor = true;
-            this.tabHostedServers.HorizontalScrollbarHighlightOnWheel = false;
-            this.tabHostedServers.HorizontalScrollbarSize = 10;
-            this.tabHostedServers.Location = new System.Drawing.Point(4, 41);
-            this.tabHostedServers.Name = "tabHostedServers";
-            this.tabHostedServers.Size = new System.Drawing.Size(372, 369);
-            this.tabHostedServers.TabIndex = 3;
-            this.tabHostedServers.Text = "Hosted Servers";
-            this.tabHostedServers.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.tabHostedServers.VerticalScrollbarBarColor = true;
-            this.tabHostedServers.VerticalScrollbarHighlightOnWheel = false;
-            this.tabHostedServers.VerticalScrollbarSize = 10;
-            // 
-            // dgHostedServer
-            // 
-            this.dgHostedServer.AllowUserToResizeRows = false;
-            this.dgHostedServer.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.dgHostedServer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgHostedServer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dgHostedServer.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(81)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgHostedServer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.dgHostedServer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgHostedServer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Engine,
-            this.ServerName,
-            this.IPAddress,
-            this.Port,
-            this.Addons});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgHostedServer.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dgHostedServer.EnableHeadersVisualStyles = false;
-            this.dgHostedServer.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.dgHostedServer.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.dgHostedServer.Location = new System.Drawing.Point(3, 12);
-            this.dgHostedServer.Name = "dgHostedServer";
-            this.dgHostedServer.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(81)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgHostedServer.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.dgHostedServer.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgHostedServer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgHostedServer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgHostedServer.Size = new System.Drawing.Size(367, 297);
-            this.dgHostedServer.Style = MetroFramework.MetroColorStyle.Brown;
-            this.dgHostedServer.TabIndex = 129;
-            this.dgHostedServer.Theme = MetroFramework.MetroThemeStyle.Dark;
-            this.dgHostedServer.UseCustomBackColor = true;
-            this.dgHostedServer.UseCustomForeColor = true;
-            this.dgHostedServer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgHostedServer_CellDoubleClick);
-            // 
-            // Engine
-            // 
-            this.Engine.FillWeight = 80F;
-            this.Engine.HeaderText = "Engine";
-            this.Engine.Name = "Engine";
-            this.Engine.Width = 80;
-            // 
-            // ServerName
-            // 
-            this.ServerName.HeaderText = "Server Name";
-            this.ServerName.Name = "ServerName";
-            this.ServerName.Width = 180;
-            // 
-            // IPAddress
-            // 
-            this.IPAddress.HeaderText = "IP";
-            this.IPAddress.Name = "IPAddress";
-            this.IPAddress.Visible = false;
-            this.IPAddress.Width = 80;
-            // 
-            // Port
-            // 
-            this.Port.HeaderText = "Port";
-            this.Port.Name = "Port";
-            this.Port.Visible = false;
-            this.Port.Width = 60;
-            // 
-            // Addons
-            // 
-            this.Addons.HeaderText = "ROM";
-            this.Addons.Name = "Addons";
-            this.Addons.Width = 80;
             // 
             // txtChannel
             // 
@@ -805,7 +275,7 @@ namespace ArcadeConnector
             this.txtChannel.CustomButton.Visible = false;
             this.txtChannel.Lines = new string[] {
         "#ArcadeConnector"};
-            this.txtChannel.Location = new System.Drawing.Point(129, 481);
+            this.txtChannel.Location = new System.Drawing.Point(557, 442);
             this.txtChannel.MaxLength = 32767;
             this.txtChannel.Name = "txtChannel";
             this.txtChannel.PasswordChar = '\0';
@@ -840,7 +310,7 @@ namespace ArcadeConnector
             this.txtPort.CustomButton.Visible = false;
             this.txtPort.Lines = new string[] {
         "6667"};
-            this.txtPort.Location = new System.Drawing.Point(104, 481);
+            this.txtPort.Location = new System.Drawing.Point(532, 442);
             this.txtPort.MaxLength = 32767;
             this.txtPort.Name = "txtPort";
             this.txtPort.PasswordChar = '\0';
@@ -859,6 +329,36 @@ namespace ArcadeConnector
             this.txtPort.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPort.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // lvUsers
+            // 
+            this.lvUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lvUsers.BackColor = System.Drawing.SystemColors.InfoText;
+            this.lvUsers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvUsers.ForeColor = System.Drawing.Color.MintCream;
+            this.lvUsers.FullRowSelect = true;
+            this.lvUsers.HideSelection = false;
+            this.lvUsers.HoverSelection = true;
+            this.lvUsers.Location = new System.Drawing.Point(4, 47);
+            this.lvUsers.MultiSelect = false;
+            this.lvUsers.Name = "lvUsers";
+            this.lvUsers.Size = new System.Drawing.Size(141, 356);
+            this.lvUsers.SmallImageList = this.imageList1;
+            this.lvUsers.TabIndex = 140;
+            this.lvUsers.UseCompatibleStateImageBehavior = false;
+            this.lvUsers.View = System.Windows.Forms.View.List;
+            this.lvUsers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lvUsers_MouseDown);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "online.png");
+            this.imageList1.Images.SetKeyName(1, "snooze.png");
+            this.imageList1.Images.SetKeyName(2, "ingame.png");
+            this.imageList1.Images.SetKeyName(3, "is_moderator.png");
+            // 
             // txtServer
             // 
             // 
@@ -875,7 +375,7 @@ namespace ArcadeConnector
             this.txtServer.CustomButton.Visible = false;
             this.txtServer.Lines = new string[] {
         "irc.libera.chat"};
-            this.txtServer.Location = new System.Drawing.Point(12, 481);
+            this.txtServer.Location = new System.Drawing.Point(440, 442);
             this.txtServer.MaxLength = 32767;
             this.txtServer.Name = "txtServer";
             this.txtServer.PasswordChar = '\0';
@@ -894,16 +394,446 @@ namespace ArcadeConnector
             this.txtServer.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtServer.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
-            // lblDownloadProgress
+            // txtNick
             // 
-            this.lblDownloadProgress.AutoSize = true;
-            this.lblDownloadProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDownloadProgress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lblDownloadProgress.Location = new System.Drawing.Point(16, 481);
-            this.lblDownloadProgress.Name = "lblDownloadProgress";
-            this.lblDownloadProgress.Size = new System.Drawing.Size(43, 13);
-            this.lblDownloadProgress.TabIndex = 100;
-            this.lblDownloadProgress.Text = "Status";
+            // 
+            // 
+            // 
+            this.txtNick.CustomButton.Image = null;
+            this.txtNick.CustomButton.Location = new System.Drawing.Point(119, 1);
+            this.txtNick.CustomButton.Name = "";
+            this.txtNick.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtNick.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtNick.CustomButton.TabIndex = 1;
+            this.txtNick.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtNick.CustomButton.UseSelectable = true;
+            this.txtNick.CustomButton.Visible = false;
+            this.txtNick.Lines = new string[0];
+            this.txtNick.Location = new System.Drawing.Point(4, 18);
+            this.txtNick.MaxLength = 12;
+            this.txtNick.Name = "txtNick";
+            this.txtNick.PasswordChar = '\0';
+            this.txtNick.PromptText = "IRC User Name";
+            this.txtNick.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtNick.SelectedText = "";
+            this.txtNick.SelectionLength = 0;
+            this.txtNick.SelectionStart = 0;
+            this.txtNick.ShortcutsEnabled = true;
+            this.txtNick.Size = new System.Drawing.Size(141, 23);
+            this.txtNick.TabIndex = 139;
+            this.txtNick.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.txtNick.UseSelectable = true;
+            this.txtNick.WaterMark = "IRC User Name";
+            this.txtNick.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtNick.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // btnDisconnect
+            // 
+            this.btnDisconnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDisconnect.Location = new System.Drawing.Point(500, 18);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(77, 24);
+            this.btnDisconnect.TabIndex = 138;
+            this.btnDisconnect.Text = "Disconnect";
+            this.btnDisconnect.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnDisconnect.UseSelectable = true;
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
+            // 
+            // btnSendIRC
+            // 
+            this.btnSendIRC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSendIRC.Location = new System.Drawing.Point(540, 381);
+            this.btnSendIRC.Name = "btnSendIRC";
+            this.btnSendIRC.Size = new System.Drawing.Size(37, 22);
+            this.btnSendIRC.TabIndex = 132;
+            this.btnSendIRC.Text = "Send";
+            this.btnSendIRC.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnSendIRC.UseSelectable = true;
+            this.btnSendIRC.Click += new System.EventHandler(this.btnSendIRC_Click);
+            // 
+            // btnIRCConnect
+            // 
+            this.btnIRCConnect.Location = new System.Drawing.Point(151, 18);
+            this.btnIRCConnect.Name = "btnIRCConnect";
+            this.btnIRCConnect.Size = new System.Drawing.Size(71, 24);
+            this.btnIRCConnect.TabIndex = 117;
+            this.btnIRCConnect.Text = "Connect";
+            this.btnIRCConnect.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnIRCConnect.UseSelectable = true;
+            this.btnIRCConnect.Click += new System.EventHandler(this.btnIRCConnect_Click);
+            // 
+            // tabTest
+            // 
+            this.tabTest.Controls.Add(this.txtSaveFilesLocation);
+            this.tabTest.Controls.Add(this.txtRomsDefaultPath);
+            this.tabTest.Controls.Add(this.btnSaveFiles);
+            this.tabTest.Controls.Add(this.txtRomPath);
+            this.tabTest.Controls.Add(this.txtCSUMELocation);
+            this.tabTest.Controls.Add(this.cmbEngineSelector);
+            this.tabTest.Controls.Add(this.cmbEngine);
+            this.tabTest.Controls.Add(this.WadName);
+            this.tabTest.Controls.Add(this.txtCMDParameters);
+            this.tabTest.Controls.Add(this.groupBox1);
+            this.tabTest.HorizontalScrollbarBarColor = true;
+            this.tabTest.HorizontalScrollbarHighlightOnWheel = false;
+            this.tabTest.HorizontalScrollbarSize = 10;
+            this.tabTest.Location = new System.Drawing.Point(4, 41);
+            this.tabTest.Name = "tabTest";
+            this.tabTest.Size = new System.Drawing.Size(580, 471);
+            this.tabTest.TabIndex = 2;
+            this.tabTest.Text = "Setup|Launch";
+            this.tabTest.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.tabTest.VerticalScrollbarBarColor = true;
+            this.tabTest.VerticalScrollbarHighlightOnWheel = false;
+            this.tabTest.VerticalScrollbarSize = 10;
+            // 
+            // txtSaveFilesLocation
+            // 
+            // 
+            // 
+            // 
+            this.txtSaveFilesLocation.CustomButton.Image = null;
+            this.txtSaveFilesLocation.CustomButton.Location = new System.Drawing.Point(-12, 1);
+            this.txtSaveFilesLocation.CustomButton.Name = "";
+            this.txtSaveFilesLocation.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtSaveFilesLocation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtSaveFilesLocation.CustomButton.TabIndex = 1;
+            this.txtSaveFilesLocation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtSaveFilesLocation.CustomButton.UseSelectable = true;
+            this.txtSaveFilesLocation.CustomButton.Visible = false;
+            this.txtSaveFilesLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtSaveFilesLocation.Lines = new string[0];
+            this.txtSaveFilesLocation.Location = new System.Drawing.Point(6, 353);
+            this.txtSaveFilesLocation.MaxLength = 32767;
+            this.txtSaveFilesLocation.Name = "txtSaveFilesLocation";
+            this.txtSaveFilesLocation.PasswordChar = '\0';
+            this.txtSaveFilesLocation.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtSaveFilesLocation.SelectedText = "";
+            this.txtSaveFilesLocation.SelectionLength = 0;
+            this.txtSaveFilesLocation.SelectionStart = 0;
+            this.txtSaveFilesLocation.ShortcutsEnabled = true;
+            this.txtSaveFilesLocation.Size = new System.Drawing.Size(10, 23);
+            this.txtSaveFilesLocation.Style = MetroFramework.MetroColorStyle.Green;
+            this.txtSaveFilesLocation.TabIndex = 119;
+            this.txtSaveFilesLocation.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.txtSaveFilesLocation.UseCustomForeColor = true;
+            this.txtSaveFilesLocation.UseSelectable = true;
+            this.txtSaveFilesLocation.Visible = false;
+            this.txtSaveFilesLocation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtSaveFilesLocation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtRomsDefaultPath
+            // 
+            // 
+            // 
+            // 
+            this.txtRomsDefaultPath.CustomButton.Image = null;
+            this.txtRomsDefaultPath.CustomButton.Location = new System.Drawing.Point(-6, 1);
+            this.txtRomsDefaultPath.CustomButton.Name = "";
+            this.txtRomsDefaultPath.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtRomsDefaultPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtRomsDefaultPath.CustomButton.TabIndex = 1;
+            this.txtRomsDefaultPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtRomsDefaultPath.CustomButton.UseSelectable = true;
+            this.txtRomsDefaultPath.CustomButton.Visible = false;
+            this.txtRomsDefaultPath.Lines = new string[0];
+            this.txtRomsDefaultPath.Location = new System.Drawing.Point(103, 353);
+            this.txtRomsDefaultPath.MaxLength = 32767;
+            this.txtRomsDefaultPath.Name = "txtRomsDefaultPath";
+            this.txtRomsDefaultPath.PasswordChar = '\0';
+            this.txtRomsDefaultPath.PromptText = "ROMs Location";
+            this.txtRomsDefaultPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtRomsDefaultPath.SelectedText = "";
+            this.txtRomsDefaultPath.SelectionLength = 0;
+            this.txtRomsDefaultPath.SelectionStart = 0;
+            this.txtRomsDefaultPath.ShortcutsEnabled = true;
+            this.txtRomsDefaultPath.Size = new System.Drawing.Size(16, 23);
+            this.txtRomsDefaultPath.Style = MetroFramework.MetroColorStyle.Orange;
+            this.txtRomsDefaultPath.TabIndex = 123;
+            this.txtRomsDefaultPath.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.txtRomsDefaultPath.UseSelectable = true;
+            this.txtRomsDefaultPath.Visible = false;
+            this.txtRomsDefaultPath.WaterMark = "ROMs Location";
+            this.txtRomsDefaultPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtRomsDefaultPath.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // btnSaveFiles
+            // 
+            this.btnSaveFiles.Location = new System.Drawing.Point(22, 353);
+            this.btnSaveFiles.Name = "btnSaveFiles";
+            this.btnSaveFiles.Size = new System.Drawing.Size(10, 23);
+            this.btnSaveFiles.TabIndex = 118;
+            this.btnSaveFiles.Text = "File Download Location";
+            this.btnSaveFiles.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnSaveFiles.UseSelectable = true;
+            this.btnSaveFiles.Visible = false;
+            this.btnSaveFiles.Click += new System.EventHandler(this.btnSaveFiles_Click);
+            // 
+            // txtRomPath
+            // 
+            this.txtRomPath.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            // 
+            // 
+            // 
+            this.txtRomPath.CustomButton.Image = null;
+            this.txtRomPath.CustomButton.Location = new System.Drawing.Point(-6, 1);
+            this.txtRomPath.CustomButton.Name = "";
+            this.txtRomPath.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtRomPath.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtRomPath.CustomButton.TabIndex = 1;
+            this.txtRomPath.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtRomPath.CustomButton.UseSelectable = true;
+            this.txtRomPath.CustomButton.Visible = false;
+            this.txtRomPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtRomPath.Lines = new string[0];
+            this.txtRomPath.Location = new System.Drawing.Point(60, 351);
+            this.txtRomPath.MaxLength = 32767;
+            this.txtRomPath.Name = "txtRomPath";
+            this.txtRomPath.PasswordChar = '\0';
+            this.txtRomPath.PromptText = "Add ROM File";
+            this.txtRomPath.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtRomPath.SelectedText = "";
+            this.txtRomPath.SelectionLength = 0;
+            this.txtRomPath.SelectionStart = 0;
+            this.txtRomPath.ShortcutsEnabled = true;
+            this.txtRomPath.Size = new System.Drawing.Size(16, 23);
+            this.txtRomPath.Style = MetroFramework.MetroColorStyle.Green;
+            this.txtRomPath.TabIndex = 130;
+            this.txtRomPath.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.txtRomPath.UseCustomForeColor = true;
+            this.txtRomPath.UseSelectable = true;
+            this.txtRomPath.Visible = false;
+            this.txtRomPath.WaterMark = "Add ROM File";
+            this.txtRomPath.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtRomPath.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // txtCSUMELocation
+            // 
+            // 
+            // 
+            // 
+            this.txtCSUMELocation.CustomButton.Image = null;
+            this.txtCSUMELocation.CustomButton.Location = new System.Drawing.Point(-6, 1);
+            this.txtCSUMELocation.CustomButton.Name = "";
+            this.txtCSUMELocation.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtCSUMELocation.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtCSUMELocation.CustomButton.TabIndex = 1;
+            this.txtCSUMELocation.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtCSUMELocation.CustomButton.UseSelectable = true;
+            this.txtCSUMELocation.CustomButton.Visible = false;
+            this.txtCSUMELocation.Lines = new string[0];
+            this.txtCSUMELocation.Location = new System.Drawing.Point(125, 353);
+            this.txtCSUMELocation.MaxLength = 32767;
+            this.txtCSUMELocation.Name = "txtCSUMELocation";
+            this.txtCSUMELocation.PasswordChar = '\0';
+            this.txtCSUMELocation.PromptText = "CSUME Engine Location";
+            this.txtCSUMELocation.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtCSUMELocation.SelectedText = "";
+            this.txtCSUMELocation.SelectionLength = 0;
+            this.txtCSUMELocation.SelectionStart = 0;
+            this.txtCSUMELocation.ShortcutsEnabled = true;
+            this.txtCSUMELocation.Size = new System.Drawing.Size(16, 23);
+            this.txtCSUMELocation.Style = MetroFramework.MetroColorStyle.Orange;
+            this.txtCSUMELocation.TabIndex = 121;
+            this.txtCSUMELocation.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.txtCSUMELocation.UseSelectable = true;
+            this.txtCSUMELocation.Visible = false;
+            this.txtCSUMELocation.WaterMark = "CSUME Engine Location";
+            this.txtCSUMELocation.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtCSUMELocation.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // cmbEngineSelector
+            // 
+            this.cmbEngineSelector.FontSize = MetroFramework.MetroComboBoxSize.Small;
+            this.cmbEngineSelector.FormattingEnabled = true;
+            this.cmbEngineSelector.ItemHeight = 19;
+            this.cmbEngineSelector.Items.AddRange(new object[] {
+            "CSUME"});
+            this.cmbEngineSelector.Location = new System.Drawing.Point(82, 351);
+            this.cmbEngineSelector.Name = "cmbEngineSelector";
+            this.cmbEngineSelector.Size = new System.Drawing.Size(16, 25);
+            this.cmbEngineSelector.Style = MetroFramework.MetroColorStyle.Orange;
+            this.cmbEngineSelector.TabIndex = 120;
+            this.cmbEngineSelector.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.cmbEngineSelector.UseSelectable = true;
+            this.cmbEngineSelector.Visible = false;
+            this.cmbEngineSelector.SelectedIndexChanged += new System.EventHandler(this.cmbEngineSelector_SelectedIndexChanged);
+            // 
+            // cmbEngine
+            // 
+            this.cmbEngine.FontSize = MetroFramework.MetroComboBoxSize.Small;
+            this.cmbEngine.FormattingEnabled = true;
+            this.cmbEngine.ItemHeight = 19;
+            this.cmbEngine.Items.AddRange(new object[] {
+            "CSUME"});
+            this.cmbEngine.Location = new System.Drawing.Point(38, 351);
+            this.cmbEngine.Name = "cmbEngine";
+            this.cmbEngine.Size = new System.Drawing.Size(16, 25);
+            this.cmbEngine.Style = MetroFramework.MetroColorStyle.Orange;
+            this.cmbEngine.TabIndex = 115;
+            this.cmbEngine.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.cmbEngine.UseSelectable = true;
+            this.cmbEngine.Visible = false;
+            // 
+            // txtCMDParameters
+            // 
+            // 
+            // 
+            // 
+            this.txtCMDParameters.CustomButton.Image = null;
+            this.txtCMDParameters.CustomButton.Location = new System.Drawing.Point(4, 1);
+            this.txtCMDParameters.CustomButton.Name = "";
+            this.txtCMDParameters.CustomButton.Size = new System.Drawing.Size(11, 11);
+            this.txtCMDParameters.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtCMDParameters.CustomButton.TabIndex = 1;
+            this.txtCMDParameters.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtCMDParameters.CustomButton.UseSelectable = true;
+            this.txtCMDParameters.CustomButton.Visible = false;
+            this.txtCMDParameters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtCMDParameters.Lines = new string[0];
+            this.txtCMDParameters.Location = new System.Drawing.Point(147, 361);
+            this.txtCMDParameters.MaxLength = 32767;
+            this.txtCMDParameters.Multiline = true;
+            this.txtCMDParameters.Name = "txtCMDParameters";
+            this.txtCMDParameters.PasswordChar = '\0';
+            this.txtCMDParameters.PromptText = "...";
+            this.txtCMDParameters.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtCMDParameters.SelectedText = "";
+            this.txtCMDParameters.SelectionLength = 0;
+            this.txtCMDParameters.SelectionStart = 0;
+            this.txtCMDParameters.ShortcutsEnabled = true;
+            this.txtCMDParameters.Size = new System.Drawing.Size(16, 13);
+            this.txtCMDParameters.Style = MetroFramework.MetroColorStyle.Brown;
+            this.txtCMDParameters.TabIndex = 120;
+            this.txtCMDParameters.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.txtCMDParameters.UseSelectable = true;
+            this.txtCMDParameters.Visible = false;
+            this.txtCMDParameters.WaterMark = "...";
+            this.txtCMDParameters.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtCMDParameters.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // tabHostedServers
+            // 
+            this.tabHostedServers.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tabHostedServers.Controls.Add(this.dgHostedServer);
+            this.tabHostedServers.ForeColor = System.Drawing.SystemColors.Control;
+            this.tabHostedServers.HorizontalScrollbarBarColor = true;
+            this.tabHostedServers.HorizontalScrollbarHighlightOnWheel = false;
+            this.tabHostedServers.HorizontalScrollbarSize = 10;
+            this.tabHostedServers.Location = new System.Drawing.Point(4, 41);
+            this.tabHostedServers.Name = "tabHostedServers";
+            this.tabHostedServers.Size = new System.Drawing.Size(580, 471);
+            this.tabHostedServers.Style = MetroFramework.MetroColorStyle.Orange;
+            this.tabHostedServers.TabIndex = 3;
+            this.tabHostedServers.Text = "Hosted Servers";
+            this.tabHostedServers.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.tabHostedServers.UseCustomBackColor = true;
+            this.tabHostedServers.UseCustomForeColor = true;
+            this.tabHostedServers.UseStyleColors = true;
+            this.tabHostedServers.UseVisualStyleBackColor = true;
+            this.tabHostedServers.VerticalScrollbarBarColor = true;
+            this.tabHostedServers.VerticalScrollbarHighlightOnWheel = false;
+            this.tabHostedServers.VerticalScrollbarSize = 10;
+            // 
+            // dgHostedServer
+            // 
+            this.dgHostedServer.AllowUserToAddRows = false;
+            this.dgHostedServer.AllowUserToDeleteRows = false;
+            this.dgHostedServer.AllowUserToResizeRows = false;
+            this.dgHostedServer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgHostedServer.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.dgHostedServer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgHostedServer.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgHostedServer.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgHostedServer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgHostedServer.ColumnHeadersHeight = 22;
+            this.dgHostedServer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Engine,
+            this.ServerName,
+            this.IPAddress,
+            this.Port,
+            this.Addons});
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgHostedServer.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dgHostedServer.EnableHeadersVisualStyles = false;
+            this.dgHostedServer.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dgHostedServer.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.dgHostedServer.Location = new System.Drawing.Point(0, 0);
+            this.dgHostedServer.Name = "dgHostedServer";
+            this.dgHostedServer.ReadOnly = true;
+            this.dgHostedServer.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dgHostedServer.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgHostedServer.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            this.dgHostedServer.RowHeadersVisible = false;
+            this.dgHostedServer.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgHostedServer.RowTemplate.Height = 42;
+            this.dgHostedServer.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgHostedServer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgHostedServer.ShowEditingIcon = false;
+            this.dgHostedServer.Size = new System.Drawing.Size(563, 434);
+            this.dgHostedServer.TabIndex = 129;
+            this.dgHostedServer.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.dgHostedServer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgHostedServer_CellDoubleClick);
+            // 
+            // Engine
+            // 
+            this.Engine.FillWeight = 80F;
+            this.Engine.HeaderText = "Engine";
+            this.Engine.Name = "Engine";
+            this.Engine.ReadOnly = true;
+            this.Engine.Width = 80;
+            // 
+            // ServerName
+            // 
+            this.ServerName.HeaderText = "Server Name";
+            this.ServerName.Name = "ServerName";
+            this.ServerName.ReadOnly = true;
+            this.ServerName.Width = 180;
+            // 
+            // IPAddress
+            // 
+            this.IPAddress.HeaderText = "IP";
+            this.IPAddress.Name = "IPAddress";
+            this.IPAddress.ReadOnly = true;
+            this.IPAddress.Visible = false;
+            this.IPAddress.Width = 80;
+            // 
+            // Port
+            // 
+            this.Port.HeaderText = "Port";
+            this.Port.Name = "Port";
+            this.Port.ReadOnly = true;
+            this.Port.Visible = false;
+            this.Port.Width = 60;
+            // 
+            // Addons
+            // 
+            this.Addons.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Addons.HeaderText = "ROM";
+            this.Addons.Name = "Addons";
+            this.Addons.ReadOnly = true;
             // 
             // contextMenuUser
             // 
@@ -921,62 +851,219 @@ namespace ArcadeConnector
             this.toolStripMenuItem1.Text = "View Status";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.viewStatusToolStripMenuItem_Click);
             // 
-            // btnTestIcons
+            // panel1
             // 
-            this.btnTestIcons.Location = new System.Drawing.Point(315, 442);
-            this.btnTestIcons.Name = "btnTestIcons";
-            this.btnTestIcons.Size = new System.Drawing.Size(70, 23);
-            this.btnTestIcons.TabIndex = 101;
-            this.btnTestIcons.Text = "test icons";
-            this.btnTestIcons.UseVisualStyleBackColor = true;
-            this.btnTestIcons.Visible = false;
-            this.btnTestIcons.Click += new System.EventHandler(this.btnTestIcons_Click);
+            this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.TabMain);
+            this.panel1.Controls.Add(this.lblGameIsHosted);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(612, 561);
+            this.panel1.TabIndex = 138;
             // 
-            // rtbWelcome
+            // groupBox1
             // 
-            this.rtbWelcome.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.rtbWelcome.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbWelcome.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.rtbWelcome.Location = new System.Drawing.Point(37, 3);
-            this.rtbWelcome.Name = "rtbWelcome";
-            this.rtbWelcome.Size = new System.Drawing.Size(302, 234);
-            this.rtbWelcome.TabIndex = 136;
-            this.rtbWelcome.Text = "";
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.groupBox1.BackgroundImage = global::ArcadeConnector.Properties.Resources.BG1;
+            this.groupBox1.Controls.Add(this.btnLaunch);
+            this.groupBox1.Controls.Add(this.chkHostTest);
+            this.groupBox1.Controls.Add(this.btnBrowseRom);
+            this.groupBox1.Controls.Add(this.btnShowInfo);
+            this.groupBox1.Controls.Add(this.lblServerName);
+            this.groupBox1.Controls.Add(this.btnCloseInfo);
+            this.groupBox1.Controls.Add(this.txtServerName);
+            this.groupBox1.Controls.Add(this.metroLabel1);
+            this.groupBox1.Controls.Add(this.lblLoadedROM);
+            this.groupBox1.Controls.Add(this.pbWelcome);
+            this.groupBox1.Controls.Add(this.pbSnap);
+            this.groupBox1.Controls.Add(this.rtbInfo);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.groupBox1.Location = new System.Drawing.Point(3, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(574, 464);
+            this.groupBox1.TabIndex = 140;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // btnLaunch
+            // 
+            this.btnLaunch.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLaunch.Location = new System.Drawing.Point(373, 415);
+            this.btnLaunch.Name = "btnLaunch";
+            this.btnLaunch.Size = new System.Drawing.Size(146, 39);
+            this.btnLaunch.TabIndex = 112;
+            this.btnLaunch.Text = "Launch";
+            this.btnLaunch.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnLaunch.UseSelectable = true;
+            this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
+            // 
+            // chkHostTest
+            // 
+            this.chkHostTest.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.chkHostTest.AutoSize = true;
+            this.chkHostTest.Location = new System.Drawing.Point(373, 394);
+            this.chkHostTest.Name = "chkHostTest";
+            this.chkHostTest.Size = new System.Drawing.Size(82, 15);
+            this.chkHostTest.TabIndex = 114;
+            this.chkHostTest.Text = "Host Game";
+            this.chkHostTest.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.chkHostTest.UseSelectable = true;
+            this.chkHostTest.CheckedChanged += new System.EventHandler(this.chkHostTest_CheckedChanged);
+            // 
+            // btnBrowseRom
+            // 
+            this.btnBrowseRom.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBrowseRom.Location = new System.Drawing.Point(373, 357);
+            this.btnBrowseRom.Name = "btnBrowseRom";
+            this.btnBrowseRom.Size = new System.Drawing.Size(146, 32);
+            this.btnBrowseRom.TabIndex = 129;
+            this.btnBrowseRom.Text = "Load ROM File";
+            this.btnBrowseRom.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.btnBrowseRom.UseSelectable = true;
+            this.btnBrowseRom.Click += new System.EventHandler(this.btnBrowseRom_Click);
             // 
             // btnShowInfo
             // 
-            this.btnShowInfo.Location = new System.Drawing.Point(143, 243);
+            this.btnShowInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnShowInfo.Location = new System.Drawing.Point(243, 349);
             this.btnShowInfo.Name = "btnShowInfo";
-            this.btnShowInfo.Size = new System.Drawing.Size(91, 13);
+            this.btnShowInfo.Size = new System.Drawing.Size(91, 20);
             this.btnShowInfo.TabIndex = 138;
             this.btnShowInfo.Text = "Show Info";
             this.btnShowInfo.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnShowInfo.UseSelectable = true;
             this.btnShowInfo.Click += new System.EventHandler(this.btnShowInfo_Click);
             // 
+            // lblServerName
+            // 
+            this.lblServerName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblServerName.AutoSize = true;
+            this.lblServerName.Location = new System.Drawing.Point(165, 398);
+            this.lblServerName.Name = "lblServerName";
+            this.lblServerName.Size = new System.Drawing.Size(90, 19);
+            this.lblServerName.TabIndex = 132;
+            this.lblServerName.Text = "Server Name:";
+            this.lblServerName.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
             // btnCloseInfo
             // 
-            this.btnCloseInfo.Location = new System.Drawing.Point(143, 243);
+            this.btnCloseInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCloseInfo.Location = new System.Drawing.Point(243, 349);
             this.btnCloseInfo.Name = "btnCloseInfo";
-            this.btnCloseInfo.Size = new System.Drawing.Size(91, 13);
+            this.btnCloseInfo.Size = new System.Drawing.Size(91, 20);
             this.btnCloseInfo.TabIndex = 139;
             this.btnCloseInfo.Text = "Close Info";
             this.btnCloseInfo.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnCloseInfo.UseSelectable = true;
             this.btnCloseInfo.Click += new System.EventHandler(this.btnCloseInfo_Click);
             // 
+            // txtServerName
+            // 
+            this.txtServerName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtServerName.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            // 
+            // 
+            // 
+            this.txtServerName.CustomButton.Image = null;
+            this.txtServerName.CustomButton.Location = new System.Drawing.Point(132, 1);
+            this.txtServerName.CustomButton.Name = "";
+            this.txtServerName.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txtServerName.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txtServerName.CustomButton.TabIndex = 1;
+            this.txtServerName.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txtServerName.CustomButton.UseSelectable = true;
+            this.txtServerName.CustomButton.Visible = false;
+            this.txtServerName.ForeColor = System.Drawing.Color.Gray;
+            this.txtServerName.Lines = new string[0];
+            this.txtServerName.Location = new System.Drawing.Point(165, 420);
+            this.txtServerName.MaxLength = 20;
+            this.txtServerName.Name = "txtServerName";
+            this.txtServerName.PasswordChar = '\0';
+            this.txtServerName.PromptText = "Max 32 Characters";
+            this.txtServerName.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtServerName.SelectedText = "";
+            this.txtServerName.SelectionLength = 0;
+            this.txtServerName.SelectionStart = 0;
+            this.txtServerName.ShortcutsEnabled = true;
+            this.txtServerName.Size = new System.Drawing.Size(154, 23);
+            this.txtServerName.Style = MetroFramework.MetroColorStyle.Green;
+            this.txtServerName.TabIndex = 131;
+            this.txtServerName.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.txtServerName.UseCustomBackColor = true;
+            this.txtServerName.UseCustomForeColor = true;
+            this.txtServerName.UseSelectable = true;
+            this.txtServerName.WaterMark = "Max 32 Characters";
+            this.txtServerName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txtServerName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
+            this.metroLabel1.Location = new System.Drawing.Point(166, 374);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(93, 19);
+            this.metroLabel1.TabIndex = 133;
+            this.metroLabel1.Text = "Loaded ROM:";
+            this.metroLabel1.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // lblLoadedROM
+            // 
+            this.lblLoadedROM.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblLoadedROM.AutoSize = true;
+            this.lblLoadedROM.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblLoadedROM.Location = new System.Drawing.Point(265, 374);
+            this.lblLoadedROM.Name = "lblLoadedROM";
+            this.lblLoadedROM.Size = new System.Drawing.Size(69, 19);
+            this.lblLoadedROM.TabIndex = 134;
+            this.lblLoadedROM.Text = "ROM File";
+            this.lblLoadedROM.Theme = MetroFramework.MetroThemeStyle.Dark;
+            // 
+            // rtbInfo
+            // 
+            this.rtbInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rtbInfo.BackColor = System.Drawing.Color.Black;
+            this.rtbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbInfo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rtbInfo.Location = new System.Drawing.Point(100, 38);
+            this.rtbInfo.MaximumSize = new System.Drawing.Size(600, 492);
+            this.rtbInfo.Name = "rtbInfo";
+            this.rtbInfo.ReadOnly = true;
+            this.rtbInfo.Size = new System.Drawing.Size(379, 305);
+            this.rtbInfo.TabIndex = 137;
+            this.rtbInfo.Text = "";
+            // 
             // pbSnap
             // 
+            this.pbSnap.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pbSnap.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.pbSnap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbSnap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbSnap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbSnap.Location = new System.Drawing.Point(56, 12);
+            this.pbSnap.Location = new System.Drawing.Point(100, 38);
+            this.pbSnap.MaximumSize = new System.Drawing.Size(700, 592);
             this.pbSnap.Name = "pbSnap";
-            this.pbSnap.Size = new System.Drawing.Size(259, 212);
+            this.pbSnap.Size = new System.Drawing.Size(379, 305);
             this.pbSnap.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSnap.TabIndex = 135;
             this.pbSnap.TabStop = false;
+            // 
+            // pbWelcome
+            // 
+            this.pbWelcome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbWelcome.Image = global::ArcadeConnector.Properties.Resources.Welcome1;
+            this.pbWelcome.Location = new System.Drawing.Point(100, 38);
+            this.pbWelcome.Name = "pbWelcome";
+            this.pbWelcome.Size = new System.Drawing.Size(379, 305);
+            this.pbWelcome.TabIndex = 140;
+            this.pbWelcome.TabStop = false;
             // 
             // readyUpToolStripMenuItem
             // 
@@ -987,37 +1074,17 @@ namespace ArcadeConnector
             this.readyUpToolStripMenuItem.Text = "Ready Up";
             this.readyUpToolStripMenuItem.Click += new System.EventHandler(this.readyUpToolStripMenuItem_Click);
             // 
-            // rtbInfo
-            // 
-            this.rtbInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rtbInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbInfo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rtbInfo.Location = new System.Drawing.Point(18, 3);
-            this.rtbInfo.Name = "rtbInfo";
-            this.rtbInfo.Size = new System.Drawing.Size(334, 234);
-            this.rtbInfo.TabIndex = 137;
-            this.rtbInfo.Text = "";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.ClientSize = new System.Drawing.Size(402, 485);
-            this.Controls.Add(this.btnTestIcons);
-            this.Controls.Add(this.lblDownloadProgress);
-            this.Controls.Add(this.TabMain);
-            this.Controls.Add(this.lblGameIsHosted);
-            this.Controls.Add(this.lblProcessStatus);
-            this.Controls.Add(this.txtChannel);
-            this.Controls.Add(this.txtServer);
-            this.Controls.Add(this.txtPort);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(612, 561);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(628, 600);
             this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Arcade Connector";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -1029,7 +1096,12 @@ namespace ArcadeConnector
             this.tabHostedServers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgHostedServer)).EndInit();
             this.contextMenuUser.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSnap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbWelcome)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1045,13 +1117,11 @@ namespace ArcadeConnector
         private MetroFramework.Controls.MetroCheckBox chkHostTest;
         private MetroFramework.Controls.MetroTextBox txtCMDParameters;
         private MetroFramework.Controls.MetroTabPage tabTest;
-        private MetroFramework.Controls.MetroGrid dgHostedServer;
         private MetroFramework.Controls.MetroTabPage tabHostedServers;
         private MetroFramework.Controls.MetroComboBox cmbEngineSelector;
         private System.Windows.Forms.Label lblDownloadProgress;
         private MetroFramework.Controls.MetroTabPage tabIRC;
         private MetroFramework.Controls.MetroButton btnIRCConnect;
-        private MetroFramework.Controls.MetroTextBox txtInput;
         private MetroFramework.Controls.MetroButton btnSendIRC;
         private MetroFramework.Controls.MetroTextBox txtPort;
         private MetroFramework.Controls.MetroTextBox txtServer;
@@ -1071,21 +1141,26 @@ namespace ArcadeConnector
         private MetroFramework.Controls.MetroTextBox txtSaveFilesLocation;
         private MetroFramework.Controls.MetroButton btnSaveFiles;
         private ToolStripMenuItem readyUpToolStripMenuItem;
-        private DataGridViewTextBoxColumn Engine;
-        private DataGridViewTextBoxColumn ServerName;
-        private DataGridViewTextBoxColumn IPAddress;
-        private DataGridViewTextBoxColumn Port;
-        private DataGridViewTextBoxColumn Addons;
         private MetroFramework.Controls.MetroCheckBox chkIRCAutoConnect;
         private MetroFramework.Controls.MetroTextBox txtRomsDefaultPath;
         private MetroFramework.Controls.MetroTextBox txtCSUMELocation;
         private MetroFramework.Controls.MetroLabel lblLoadedROM;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private PictureBox pbSnap;
-        private RichTextBox rtbWelcome;
         private MetroFramework.Controls.MetroButton btnShowInfo;
         private MetroFramework.Controls.MetroButton btnCloseInfo;
         private RichTextBox rtbInfo;
+        private Panel panel1;
+        private DataGridViewTextBoxColumn Engine;
+        private DataGridViewTextBoxColumn ServerName;
+        private DataGridViewTextBoxColumn IPAddress;
+        private DataGridViewTextBoxColumn Port;
+        private DataGridViewTextBoxColumn Addons;
+        private MetroFramework.Controls.MetroGrid dgHostedServer;
+        private GroupBox groupBox1;
+        private RichTextBox txtInput;
+        private Label lblUserTyping;
+        private PictureBox pbWelcome;
     }
 }
 

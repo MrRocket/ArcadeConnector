@@ -1,5 +1,6 @@
 ﻿using Meebey.SmartIrc4net;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -15,11 +16,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using WeCantSpell.Hunspell;
 using IrcErrorEventArgs = Meebey.SmartIrc4net.ErrorEventArgs;
 
 // ===========================================================================
 
-// ==  Arcade Connector was created by Mr.Rocket aka Ron Goode ~ 7-11-2025  ==
+// ==  Arcade Connector was created by Mr.Rocket aka Ron Goode ~ 7-21-2025  ==
 
 // ===========================================================================
 
@@ -73,6 +75,19 @@ namespace ArcadeConnector
         private HashSet<string> _readyUsers = new HashSet<string>();
         private string _lastJoinLink = null;
 
+        private WordList _dictionary; 
+        private ContextMenuStrip _spellContextMenu;
+
+        // spell check
+        private Panel _spellOverlayPanel;
+
+        // user typing
+  //      private System.Windows.Forms.Timer _typingStatusTimer;
+        private string _currentTypingUser;
+
+        private System.Windows.Forms.Timer _typingStatusTimer;
+
+
         // end IRC 
 
         private List<HostedServerEntry> _hostedServerList = new List<HostedServerEntry>();
@@ -92,6 +107,7 @@ namespace ArcadeConnector
             InitializeComponent();
 
             // IRC
+
             _irc.OnConnected += Irc_OnConnected;
             _irc.OnChannelMessage += Irc_OnChannelMessage;
             _irc.OnError += Irc_OnError;
@@ -241,7 +257,7 @@ namespace ArcadeConnector
 
             _isHosting = false;
             _userStatus[nick] = "online";
-            SetUserInGame(nick, false);  // ✅ Sets icon to online.png
+            SetUserInGame(nick, false);  // Sets user icon to online.png
             SetUserAfk(nick, false);     // In case AFK was triggered
 
             this.Invoke((MethodInvoker)(() =>
@@ -251,7 +267,7 @@ namespace ArcadeConnector
                 _hostBroadcastTimer = null;
 
                 lblGameIsHosted.Text = "";
-                UpdateUserIcon(nick); // ✅ Local icon (redundant but safe)
+                UpdateUserIcon(nick); // Local icon may be a bit redundant
 
                 // Remove own server from grid if still there
                 for (int i = dgHostedServer.Rows.Count - 1; i >= 0; i--)
@@ -377,7 +393,7 @@ namespace ArcadeConnector
                     try
                     {
                         _serverProcess = Process.Start(serverPsi);
-                        TabMain.SelectedTab = tabHostedServers;
+                        TabMain.SelectedTab = tabIRC;
 
                         _isHosting = true;
                         _userStatus[nick] = "ingame";
@@ -573,7 +589,7 @@ namespace ArcadeConnector
 
                 // 1. Send standard host info
                 //~ This needs updated..
-                // TODO, handle unknown requests.
+                // TODO, handle unknown requests.?
 
                 byte[] data = Encoding.UTF8.GetBytes(message);
                 udp.Send(data, data.Length, new System.Net.IPEndPoint(System.Net.IPAddress.Broadcast, 45291));
@@ -824,7 +840,6 @@ namespace ArcadeConnector
         }
 
 
-
         private void UpdateHostedServerGridEnabled()
         {
             dgHostedServer.Enabled = !_isHosting && dgHostedServer.Rows.Count > 0;
@@ -835,6 +850,7 @@ namespace ArcadeConnector
             return data.All(b => b == 9 || b == 10 || b == 13 || (b >= 32 && b <= 126));
         }
 
+        // Just a reference and since the datagrid has a header named IPAddress
         //new System.Net.IPEndPoint(System.Net.IPAddress.Any, 45291);
         private void StartHostListener()
         {
@@ -871,7 +887,7 @@ namespace ArcadeConnector
                                         string engine = parts[1];
                                         string hostIp = parts[2];
 
-                                        // ✅ Handle shutdown broadcast
+                                        // Handle shutdown broadcast
                                         if (string.IsNullOrWhiteSpace(engine))
                                         {
                                             this.Invoke((MethodInvoker)(() =>
@@ -881,7 +897,7 @@ namespace ArcadeConnector
 
                                                 _hostPresenceTimer?.Stop();
 
-                                                // ✅ Remove ALL hosted servers with this IP
+                                                // Remove ALL hosted servers with this IP
                                                 for (int i = dgHostedServer.Rows.Count - 1; i >= 0; i--)
                                                 {
                                                     var row = dgHostedServer.Rows[i];
@@ -931,7 +947,8 @@ namespace ArcadeConnector
 
                                                 _lastHostedEngine = engine;
 
-                                                // ✅ Always show label on client when game is hosted
+                                                // Always show label on client when game is hosted
+                                                // 
                                                 lblGameIsHosted.Text = $"Heartbeat detected a {engine} game hosted!\nView [Hosted Servers] for more info...";
                                                 AddOrUpdateHostedServer(engine, servername, hostIp, port, addons);
                                             });
@@ -1030,16 +1047,26 @@ namespace ArcadeConnector
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            lblUserTyping.Text = "";
+
+            _typingStatusTimer = new System.Windows.Forms.Timer();
+            _typingStatusTimer.Interval = 3000; // 3 seconds
+            _typingStatusTimer.Tick += (s, args) =>
+            {
+                lblUserTyping.Text = "";
+                _typingStatusTimer.Stop();
+            };
+
+            InitializeSpellCheck();
+
             btnCloseInfo.Visible = false;
             rtbInfo.Visible = false;
 
-            rtbWelcome.Text = "\n\n\n        Thank you for using Arcade Connector!\n\n       Please select a ROM file to get started.";
-
             // Toggle visibility based on whether a ROM was previously selected
             if (!string.IsNullOrEmpty(Properties.Settings.Default.RomName))
-                rtbWelcome.Visible = false;
+                pbWelcome.Visible = false;
             else
-                rtbWelcome.Visible = true;
+                pbWelcome.Visible = true;
 
 
             // Get the defualt CSUME paths
@@ -1055,17 +1082,6 @@ namespace ArcadeConnector
 
             string romName = Path.GetFileNameWithoutExtension(Properties.Settings.Default.RomName);
             UpdateSnapPreviewFromRom(romName);
-
-            //    txtCSUMELocation.ReadOnly = true;
-            //    txtRomsDefaultPath.ReadOnly = true;
-            ////btnCSUMELocation.Enabled = false;
-            ////btnROMsLocation.Enabled = false;
-
-
-            // Start the program up in the right corner of the screen
-            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
-            int formWidth = this.Width;
-            this.Location = new Point(screenWidth - formWidth, 0);
      
             // This program broadcasts if a game is hosted with it
             // Start the host listener method, listen for hosted games.
@@ -1107,11 +1123,10 @@ namespace ArcadeConnector
 
             lblGameIsHosted.Text = "";
             lblProcessStatus.Text = "";
-      
-            ////txtCSUMELocation.Text = Properties.Settings.Default.CSUMELocation;
-            ////txtRomsDefaultPath.Text = Properties.Settings.Default.RomsDefaultPath;
+
             txtRomPath.Text = Properties.Settings.Default.RomPath;
             lblLoadedROM.Text = Properties.Settings.Default.RomName;
+            groupBox1.Text = Properties.Settings.Default.RomName;
             cmbEngine.SelectedItem = Properties.Settings.Default.SelectedEngine;
 
             //IRC USERNAME
@@ -1224,6 +1239,8 @@ namespace ArcadeConnector
                 Properties.Settings.Default.IRCUserName = txtNick.Text;
                 Properties.Settings.Default.Save();
 
+                groupBox1.Text = lblLoadedROM.Text;
+
                 //Auto IRC Connect end ---------------------------------
             }
 
@@ -1254,7 +1271,6 @@ namespace ArcadeConnector
                 }
             }
         }
-
 
 
         private void dgHostedServer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1398,16 +1414,11 @@ namespace ArcadeConnector
 
           
         }
-
-
-
+   // Begin IRC -----------------------------------------------------------
 
         private UdpClient _udpProfileClient;
         private Thread _udpProfileThread;
         private bool _udpProfileRunning = false;
-
-
-        // Begin IRC -----------------------------------------------------------
 
         // IPEndPoint remoteEP = new IPEndPoint(System.Net.IPAddress.Any, 0);
 
@@ -1694,14 +1705,11 @@ namespace ArcadeConnector
                     SetUserInGame(backUser, false);
                     SetUserAfk(backUser, false);
 
-                    // Remove from ready list if they were in it
                     if (_readyUsers.Contains(backUser))
                         _readyUsers.Remove(backUser);
 
-                    // Reset user icon to "online"
                     SetUserIcon(backUser, "online");
 
-                    // If it's the local user, update ListView item as well
                     if (backUser.Equals(localUser, StringComparison.OrdinalIgnoreCase))
                     {
                         this.Invoke((MethodInvoker)(() =>
@@ -1711,10 +1719,7 @@ namespace ArcadeConnector
                                 if (item.Text == backUser)
                                 {
                                     item.ImageKey = "online";
-
-                                    // checkmark toggle
                                     readyUpToolStripMenuItem.Checked = false;
-
                                     break;
                                 }
                             }
@@ -1738,7 +1743,6 @@ namespace ArcadeConnector
                     return;
                 }
 
-
                 // SAFELY HANDLE [AUTOJOIN:]
                 if (msg.StartsWith("[AUTOJOIN:", StringComparison.OrdinalIgnoreCase))
                 {
@@ -1756,9 +1760,8 @@ namespace ArcadeConnector
 
                             this.Invoke((MethodInvoker)(() =>
                             {
-                                ClearReadyStatusForUser(localUser); // Clear ready state
-                                PerformAutoJoinFromLastJoinLink();  // Trigger ConnectToSelectedServer
-                                                                        
+                                ClearReadyStatusForUser(localUser);
+                                PerformAutoJoinFromLastJoinLink();
                             }));
                         }
                     }
@@ -1769,7 +1772,6 @@ namespace ArcadeConnector
 
                     return;
                 }
-
 
                 if (msg.StartsWith("[READY:", StringComparison.OrdinalIgnoreCase))
                 {
@@ -1786,31 +1788,53 @@ namespace ArcadeConnector
                     SetUserIcon(user, "online");
                     return;
                 }
-
-                // Anti-spam logic
-                if (!_userMessageTimestamps.ContainsKey(nick))
-                    _userMessageTimestamps[nick] = new Queue<DateTime>();
-
-                var timestamps = _userMessageTimestamps[nick];
-                DateTime now = DateTime.Now;
-
-                while (timestamps.Count > 0 && (now - timestamps.Peek()) > SpamWindow)
-                    timestamps.Dequeue();
-
-                timestamps.Enqueue(now);
-
-                if (timestamps.Count > SpamThreshold)
+                
+                // [TYPING:] – Show typing indicator
+                if (msg.StartsWith("[TYPING:", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (!_warnedUsers.Contains(nick))
+                    Console.WriteLine("[DEBUG] TYPING message received: " + msg);
+                    string typingUser = msg.Substring(8, msg.Length - 9);
+
+                    if (!typingUser.Equals(txtNick.Text.Trim(), StringComparison.OrdinalIgnoreCase))
                     {
-                        AppendChatLog($"[WARN] {nick}, you're sending messages too fast. Please slow down.", Color.Orange);
-                        _warnedUsers.Add(nick);
+                        this.BeginInvoke((MethodInvoker)(() =>
+                        {
+                            lblUserTyping.Text = $"{typingUser} is typing...";
+                            _typingStatusTimer.Stop();
+                            _typingStatusTimer.Start();
+                        }));
                     }
+                    return;
                 }
-                else
+
+
+                // Anti-spam logic (skip for [TYPING:] messages)
+                if (!msg.StartsWith("[TYPING:", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (_warnedUsers.Contains(nick))
-                        _warnedUsers.Remove(nick);
+                    if (!_userMessageTimestamps.ContainsKey(nick))
+                        _userMessageTimestamps[nick] = new Queue<DateTime>();
+
+                    var timestamps = _userMessageTimestamps[nick];
+                    DateTime now = DateTime.Now;
+
+                    while (timestamps.Count > 0 && (now - timestamps.Peek()) > SpamWindow)
+                        timestamps.Dequeue();
+
+                    timestamps.Enqueue(now);
+
+                    if (timestamps.Count > SpamThreshold)
+                    {
+                        if (!_warnedUsers.Contains(nick))
+                        {
+                            AppendChatLog($"[WARN] {nick}, you're sending messages too fast. Please slow down.", Color.Orange);
+                            _warnedUsers.Add(nick);
+                        }
+                    }
+                    else
+                    {
+                        if (_warnedUsers.Contains(nick))
+                            _warnedUsers.Remove(nick);
+                    }
                 }
 
                 // [AFK:]
@@ -1883,7 +1907,6 @@ namespace ArcadeConnector
                     return;
                 }
 
-
                 if (msg.Contains("[STATUS]")) { AppendChatLog($"{nick}: {msg}", Color.Lime); return; }
                 if (msg.Contains("[WARN]")) { AppendChatLog($"{nick}: {msg}", Color.Brown); return; }
                 if (msg.Contains("[INFO]")) { AppendChatLog($"{nick}: {msg}", Color.LimeGreen); return; }
@@ -1913,7 +1936,7 @@ namespace ArcadeConnector
                     PlaySound("beback.wav");
                 }
 
-                if (_warnedUsers.Contains(nick) && timestamps.Count <= SpamThreshold / 2)
+                if (_warnedUsers.Contains(nick) && _userMessageTimestamps[nick].Count <= SpamThreshold / 2)
                 {
                     _warnedUsers.Remove(nick);
                 }
@@ -1999,7 +2022,7 @@ namespace ArcadeConnector
         }
 
 
-        private void AppendChatLog(string text, Color color)
+        private async void AppendChatLog(string text, Color color)
         {
             // Skip if control is disposed or handle not ready
             if (txtChat == null || txtChat.IsDisposed || !txtChat.IsHandleCreated)
@@ -2052,8 +2075,35 @@ namespace ArcadeConnector
             { "/soulsphere", Path.Combine(Application.StartupPath, "Images", "soulsphere.png") },
             { "/beer", Path.Combine(Application.StartupPath, "Images", "beer.png") },
             { "/cheers", Path.Combine(Application.StartupPath, "Images", "cheers.png") },
-            { "/snooze", Path.Combine(Application.StartupPath, "Images", "snooze.png") }
-            // TODO add more image commands
+            { "/snooze", Path.Combine(Application.StartupPath, "Images", "snooze.png") },
+            { ":)", Path.Combine(Application.StartupPath, "Images", "smile.png") },
+            { "/smile", Path.Combine(Application.StartupPath, "Images", "smile.png") },
+            { "/heart", Path.Combine(Application.StartupPath, "Images", "heart.gif") },
+            { "/thumbsup", Path.Combine(Application.StartupPath, "Images", "thumbsup.png") },
+            { "/thumbsdown", Path.Combine(Application.StartupPath, "Images", "thumbsdown.png") },
+            { "/bigsmile", Path.Combine(Application.StartupPath, "Images", "bigsmile.gif") },
+            { ":D", Path.Combine(Application.StartupPath, "Images", "bigsmile.gif") },
+             { "/confused", Path.Combine(Application.StartupPath, "Images", "confused.gif") },
+             { ":|", Path.Combine(Application.StartupPath, "Images", "confused.gif") },
+              { "/cool", Path.Combine(Application.StartupPath, "Images", "cool.gif") },
+              { "8)", Path.Combine(Application.StartupPath, "Images", "cool.gif") },
+               { "/devil", Path.Combine(Application.StartupPath, "Images", "devil.gif") },
+               { "/gasp", Path.Combine(Application.StartupPath, "Images", "gasp.gif") },
+               { ":o", Path.Combine(Application.StartupPath, "Images", "gasp.gif") },
+               { "/ingame", Path.Combine(Application.StartupPath, "Images", "ingame.png") },
+               { "/joust_life", Path.Combine(Application.StartupPath, "Images", "joust_life.bmp") },
+               { "/like", Path.Combine(Application.StartupPath, "Images", "like.gif") },
+               { "/pacman_ghost", Path.Combine(Application.StartupPath, "Images", "pacman_ghost.bmp") },
+               { "/poop", Path.Combine(Application.StartupPath, "Images", "poop.gif") },
+               { "/shinobi_life", Path.Combine(Application.StartupPath, "Images", "shinobi_life.bmp") },
+               { "/tongue", Path.Combine(Application.StartupPath, "Images", "tongue.gif") },
+               { ":P", Path.Combine(Application.StartupPath, "Images", "tongue.gif") },
+               { "/wink", Path.Combine(Application.StartupPath, "Images", "wink.gif") },
+               { ";)", Path.Combine(Application.StartupPath, "Images", "wink.gif") },
+               { "/zaxon_jet", Path.Combine(Application.StartupPath, "Images", "zaxon_jet.bmp") },
+               // All emoji's:  /gasp /devil /cool /confused /bigsmile /thumbsdown /thumbsup /heart /smile /beer /cheers /snooze /soulsphere /ingame /zaxon_jet /shinobi_life /pacman_ghost /joust_life 
+               // ~ shortcuts: :) :| 8) :D :o :P ;)
+               // I may add more later, but this should be enough for now
         };
 
                 txtChat.SelectionStart = txtChat.TextLength;
@@ -2100,6 +2150,19 @@ namespace ArcadeConnector
                 txtChat.AppendText(Environment.NewLine);
                 txtChat.SelectionColor = txtChat.ForeColor;
 
+                // Detect external image URLs (e.g., .png, .jpg, .gif, .bmp)
+                var imageLinkMatch = Regex.Match(text, @"(https?:\/\/[^\s]+?\.(png|jpg|jpeg|gif|bmp))", RegexOptions.IgnoreCase);
+                if (imageLinkMatch.Success)
+                {
+                    string imageUrl = imageLinkMatch.Value;
+                    txtChat.SelectionStart = txtChat.TextLength;
+                    txtChat.SelectionColor = Color.Gray;
+                    txtChat.AppendText($"[LOADING IMAGE PREVIEW: {imageUrl}]{Environment.NewLine}");
+                    txtChat.SelectionColor = txtChat.ForeColor;
+
+                    await InsertImageFromUrl(imageUrl);
+                }
+
                 // Highlight join:// links
                 MatchCollection matches = Regex.Matches(text, @"join://[^\s]+");
                 foreach (Match match in matches)
@@ -2131,6 +2194,37 @@ namespace ArcadeConnector
             }
         }
 
+        private async Task InsertImageFromUrl(string imageUrl)
+        {
+            try
+            {
+                // I used ChatGTP to figure out how to do this:
+                // Ensure TLS 1.2+ support
+                System.Net.ServicePointManager.SecurityProtocol =
+                    System.Net.SecurityProtocolType.Tls12 |
+                    System.Net.SecurityProtocolType.Tls11 |
+                    System.Net.SecurityProtocolType.Tls;
+
+                using (var http = new System.Net.Http.HttpClient())
+                {
+                    byte[] imgBytes = await http.GetByteArrayAsync(imageUrl);
+                    using (var ms = new MemoryStream(imgBytes))
+                    using (Image img = Image.FromStream(ms))
+                    {
+                        Clipboard.SetImage(img);
+                        bool wasReadOnly = txtChat.ReadOnly;
+                        txtChat.ReadOnly = false;
+                        txtChat.Paste();
+                        txtChat.ReadOnly = wasReadOnly;
+                        txtChat.AppendText(Environment.NewLine);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                txtChat.AppendText("[IMAGE LOAD FAILED: " + ex.Message + "]" + Environment.NewLine);
+            }
+        }
 
 
 
@@ -2187,12 +2281,12 @@ namespace ArcadeConnector
             AppendChatLog($"On: {date}", Color.Green);
             AppendChatLog($"", Color.White);
             AppendChatLog($"Welcome {nick}!", Color.Cyan);
-            AppendChatLog($"________________________", Color.DarkCyan);
+            AppendChatLog($"__________________________________", Color.DarkCyan);
             AppendChatLog($"", Color.White);
         }
 
 
-        // Someone joins—add them to the user list
+        // Someone joined, add them to the user list
         private void Irc_OnJoin(object sender, JoinEventArgs e)
         {
             string msg = e.Data.Message;
@@ -2238,7 +2332,7 @@ namespace ArcadeConnector
         }
 
 
-        // Someone leaves the channel
+        // Someone left the channel
         private void Irc_OnPart(object sender, PartEventArgs e)
         {
             RemoveUser(e.Who);
@@ -2343,6 +2437,8 @@ namespace ArcadeConnector
         // Send the chat message
         private void btnSendIRC_Click(object sender, EventArgs e)
         {
+            lblUserTyping.Text = "";
+
             var msg = txtInput.Text.Trim();
             var channel = txtChannel.Text.Trim();
             var nick = txtNick.Text.Trim();
@@ -2422,7 +2518,7 @@ namespace ArcadeConnector
                 return;
             }
 
-            // Auto-clear AFK if user types *any* message (except /back)
+            // Auto-clear AFK if user sends (any) message (except /back)
             if (_userAfkTimestamps.ContainsKey(nickKey) &&
                 !msg.Equals("/back", StringComparison.OrdinalIgnoreCase))
             {
@@ -2567,7 +2663,7 @@ namespace ArcadeConnector
                 int port = int.Parse(ipPort[1]);
 
           
-                List<string> pwads = new List<string>();
+            //    List<string> pwads = new List<string>();
                 string rom = "";
 
                 // Parse the remaining parts
@@ -2690,7 +2786,7 @@ namespace ArcadeConnector
         {
             string localNick = txtNick.Text.Trim();
 
-            // Prevent joining if already in-game or hosting
+            // Don't allow joining if already in-game or hosting
             if (_isHosting || (_userStatus.ContainsKey(localNick) && _userStatus[localNick] == "ingame"))
             {
                 AppendChatLog("[INFO] You're already in a game. Return before joining another.", Color.Red);
@@ -2706,7 +2802,7 @@ namespace ArcadeConnector
                 return;
             }
 
-            // Handle external URLs (http, https, ftp)
+            // Handle external URLs (http, https, ftp) ~ still need to test ftp links!
             if (link.StartsWith("http://", StringComparison.OrdinalIgnoreCase) ||
                 link.StartsWith("https://", StringComparison.OrdinalIgnoreCase) ||
                 link.StartsWith("ftp://", StringComparison.OrdinalIgnoreCase))
@@ -2921,7 +3017,7 @@ namespace ArcadeConnector
                     // Local notice to room 
                     AppendChatLog($"[{nick}] has lost connection to IRC.", Color.DarkOrange);
 
-                    // Optionally attempt visual feedback in UI
+                    // attempt visual feedback in UI
                     foreach (ListViewItem item in lvUsers.Items)
                     {
                         if (item.Text.Equals(nick, StringComparison.OrdinalIgnoreCase))
@@ -3054,51 +3150,23 @@ namespace ArcadeConnector
                 default: return "";
             }
         }
-        ////private void btnCSUMELocation_Click(object sender, EventArgs e)
-        ////{
-        ////    OpenFileDialog openFileDialog = new OpenFileDialog();
-        ////    openFileDialog.Filter = "CSUME Executable|CSUME.exe";
-        ////    if (openFileDialog.ShowDialog() == DialogResult.OK)
-        ////    {
-        ////        txtCSUMELocation.Text = openFileDialog.FileName;
-
-        ////        Properties.Settings.Default.CSUMELocation = txtCSUMELocation.Text;
-        ////        Properties.Settings.Default.Save(); 
-
-        ////    }
-
-        ////    if (string.IsNullOrWhiteSpace(txtCSUMELocation.Text))
-        ////    {
-        ////        MessageBox.Show("Please enter a path to your CSUME Engine.");
-        ////    }
-        ////    else
-        ////    {
-        ////        cmbEngine.Text = "CSUME";
-
-        ////    }
-        ////    if (cmbEngine.Text == "CSUME")
-        ////    {
-
-        ////        cmbEngine.SelectedIndex = 0; 
-        ////        txtCSUMELocation.Text = openFileDialog.FileName;
-        ////    }
-        ////}
+        
 
         private void btnBrowseRom_Click(object sender, EventArgs e)
         {
 
 
-            // Set default ROMs folder path (always inside application root)
+            // Set default ROMs folder path 
             string romsPath = Path.Combine(Application.StartupPath, "csume", "roms");
 
-            // Ensure the folder exists (optional, but good practice)
+            // Ensure the folder exists
             if (!Directory.Exists(romsPath))
                 Directory.CreateDirectory(romsPath);
 
             // Open file dialog to select ROM
             using (OpenFileDialog dlg = new OpenFileDialog())
             {
-                dlg.InitialDirectory = romsPath; // ✅ Set default directory
+                dlg.InitialDirectory = romsPath; // Set default directory
                 dlg.Filter = "ROM ZIP Files (*.zip)|*.zip|All Files (*.*)|*.*";
                 dlg.Title = "Select CSUME ROM";
 
@@ -3106,10 +3174,10 @@ namespace ArcadeConnector
                 {
                     txtRomPath.Text = dlg.FileName;
 
-                    // 👇 Get only the filename (e.g., "joustwr.zip")
+                    // Get only the filename 
                     string romFileName = Path.GetFileName(dlg.FileName);
 
-                    // 👇 Display it in the label
+                    // Display it in the label
                     lblLoadedROM.Text = $"{romFileName}";
 
                     Properties.Settings.Default.RomName = lblLoadedROM.Text;
@@ -3117,26 +3185,24 @@ namespace ArcadeConnector
                     Properties.Settings.Default.Save();
 
                     // if no ROM has ever been loaded, we display a welcome message:
-                    rtbWelcome.Text = "\n\n\n        Thank you for using Arcade Connector!\n\n       Please select a ROM file to get started.";
 
                     // Toggle visibility based on whether a ROM was previously selected
                     if (!string.IsNullOrEmpty(Properties.Settings.Default.RomName))
-                        rtbWelcome.Visible = false;
+                        pbWelcome.Visible = false;
                     else
-                        rtbWelcome.Visible = true;
+                        pbWelcome.Visible = true;
 
                     //...
 
 
-                    UpdateSnapPreviewFromRom(dlg.FileName); // 🔁 Load matching preview
+                    UpdateSnapPreviewFromRom(dlg.FileName); // Load matching art preview of file name
 
                     UpdateCommandLine();
+
+                    groupBox1.Text = lblLoadedROM.Text;
                 }
             }
         }
-
-
-
 
 
         private void UpdateSnapPreviewFromRom(string romFilePath)
@@ -3163,21 +3229,6 @@ namespace ArcadeConnector
             }
         }
 
-
-
-
-        ////private void btnROMsLocation_Click(object sender, EventArgs e)
-        ////{
-        ////    FolderBrowserDialog fbd = new FolderBrowserDialog();
-        ////    fbd.Description = "Select your ROMs Location..";
-        ////    if (fbd.ShowDialog() == DialogResult.OK && fbd.SelectedPath.Length > 0)
-        ////    {
-        ////        txtRomsDefaultPath.Text = fbd.SelectedPath.ToString();
-        ////        Properties.Settings.Default.RomsDefaultPath = txtRomsDefaultPath.Text; 
-        ////        Properties.Settings.Default.Save(); 
-
-        ////    }
-        ////}
 
         private void readyUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3210,6 +3261,8 @@ namespace ArcadeConnector
         private void btnShowInfo_Click(object sender, EventArgs e)
         {
             rtbInfo.Visible = true;
+            pbSnap.Visible = false;
+            pbWelcome.Visible = false;
             btnShowInfo.Visible = false;
             btnCloseInfo.Visible = true;
             // Show a message box with game instructions
@@ -3230,11 +3283,177 @@ namespace ArcadeConnector
             btnShowInfo.Visible = true;
             btnCloseInfo.Visible = false;
             rtbInfo.Visible = false;
+            pbSnap.Visible = true;
         }
 
 
 
         // End Game Engine Setup ---------------------------------------------------
+
+
+       
+        // IRC Spell check --------------------------------------------------
+
+        // I totaly had to use some help from ChatGPT with the spell check stuff
+        private void InitializeSpellCheck()
+        {
+            try
+            {
+                string dictPath = Path.Combine(Application.StartupPath, "Dictionaries");
+
+                _dictionary = WordList.CreateFromFiles(
+                    Path.Combine(dictPath, "en_us.dic"),
+                    Path.Combine(dictPath, "en_us.aff"));
+
+                _spellContextMenu = new ContextMenuStrip();
+                txtInput.ContextMenuStrip = _spellContextMenu;
+                txtInput.MouseUp += TxtInput_MouseUp;
+
+                // Attach event for live highlighting
+                txtInput.TextChanged += TxtInput_TextChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to load spellcheck dictionary: " + ex.Message);
+            }
+        }
+
+
+        private DateTime _lastTypingBroadcast = DateTime.MinValue;
+        private bool _suppressTyping = false; // Used when replacing words via spell-check
+
+        private void TxtInput_TextChanged(object sender, EventArgs e)
+        {
+            // Run spell-check highlighting
+            if (_dictionary != null)
+            {
+                HighlightMisspelledWords();
+            }
+
+            // Optionally suppress typing broadcasts (e.g., after auto-correct)
+            if (_suppressTyping) return;
+
+            // Send typing notification if connected to IRC
+            if (_irc != null && _irc.IsConnected)
+            {
+                if ((DateTime.Now - _lastTypingBroadcast).TotalSeconds > 2)
+                {
+                    string nick = txtNick.Text.Trim();
+                    if (!string.IsNullOrEmpty(nick))
+                    {
+                        _irc.RfcPrivmsg(txtChannel.Text, $"[TYPING:{nick}]");
+                        _lastTypingBroadcast = DateTime.Now;
+                        Console.WriteLine($"[DEBUG] Broadcasting typing: {nick}");
+
+                    }
+                }
+            }
+
+        }
+
+
+        private void HighlightMisspelledWords()
+        {
+            // Preserve current selection
+            int originalSelectionStart = txtInput.SelectionStart;
+            int originalSelectionLength = txtInput.SelectionLength;
+
+            // Reset all text color
+            txtInput.SelectAll();
+            txtInput.SelectionColor = Color.White;
+
+            string[] words = txtInput.Text.Split(' ', '\n', '\r', '\t', '.', ',', '!', '?');
+            int position = 0;
+
+            foreach (string word in words)
+            {
+                if (!string.IsNullOrWhiteSpace(word))
+                {
+                    if (!_dictionary.Check(word))
+                    {
+                        // Highlight misspelled word
+                        txtInput.Select(position, word.Length);
+                        txtInput.SelectionColor = Color.Red;
+                    }
+                }
+                position += word.Length + 1;
+            }
+
+            // Restore selection
+            txtInput.SelectionStart = originalSelectionStart;
+            txtInput.SelectionLength = originalSelectionLength;
+            txtInput.SelectionColor = Color.White;
+        }
+
+
+        private void TxtInput_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right) return;
+
+            // Get the caret index at the clicked position
+            int index = txtInput.GetCharIndexFromPosition(e.Location);
+            txtInput.SelectionStart = index;
+            txtInput.SelectionLength = 0;
+
+            // Build and show context menu only if the clicked word is misspelled
+            ShowSpellCheckContextMenu(e.Location);
+        }
+
+        private void ShowSpellCheckContextMenu(Point location)
+        {
+            string text = txtInput.Text;
+            if (string.IsNullOrWhiteSpace(text)) return;
+
+            int caretIndex = txtInput.SelectionStart;
+            if (caretIndex > text.Length) caretIndex = text.Length;
+
+            // Find start of word
+            int wordStart = caretIndex;
+            while (wordStart > 0 && !char.IsWhiteSpace(text[wordStart - 1]))
+                wordStart--;
+
+            // Find end of word
+            int wordEnd = caretIndex;
+            while (wordEnd < text.Length && !char.IsWhiteSpace(text[wordEnd]))
+                wordEnd++;
+
+            if (wordStart >= wordEnd) return; // No word found
+
+            string currentWord = text.Substring(wordStart, wordEnd - wordStart);
+
+            if (string.IsNullOrWhiteSpace(currentWord) || _dictionary.Check(currentWord))
+                return;
+
+            // Build the context menu
+            _spellContextMenu.Items.Clear();
+            var suggestions = _dictionary.Suggest(currentWord);
+
+            if (suggestions.Any())
+            {
+                foreach (var suggestion in suggestions.Take(5))
+                {
+                    var item = new ToolStripMenuItem(suggestion);
+                    item.Click += (s, e) => ReplaceWordAtCaret(suggestion, wordStart, currentWord.Length);
+                    _spellContextMenu.Items.Add(item);
+                }
+            }
+            else
+            {
+                _spellContextMenu.Items.Add(new ToolStripMenuItem("(No suggestions)") { Enabled = false });
+            }
+
+            _spellContextMenu.Show(txtInput, location);
+        }
+
+        private void ReplaceWordAtCaret(string newWord, int wordStart, int wordLength)
+        {
+            _suppressTyping = true;
+            txtInput.Select(wordStart, wordLength);
+            txtInput.SelectedText = newWord;
+            _suppressTyping = false;
+        }
+
+        // End Spell check----------------------------------------------------
 
     }
 }

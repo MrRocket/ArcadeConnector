@@ -26,132 +26,12 @@ namespace ArcadeConnector.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ZDoomLocation {
-            get {
-                return ((string)(this["ZDoomLocation"]));
-            }
-            set {
-                this["ZDoomLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string GZDoomLocation {
-            get {
-                return ((string)(this["GZDoomLocation"]));
-            }
-            set {
-                this["GZDoomLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ZandronumLocation {
-            get {
-                return ((string)(this["ZandronumLocation"]));
-            }
-            set {
-                this["ZandronumLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string QZandronumLocation {
-            get {
-                return ((string)(this["QZandronumLocation"]));
-            }
-            set {
-                this["QZandronumLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string IWADLocation {
-            get {
-                return ((string)(this["IWADLocation"]));
-            }
-            set {
-                this["IWADLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string SelectedEngine {
             get {
                 return ((string)(this["SelectedEngine"]));
             }
             set {
                 this["SelectedEngine"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SelectedIWAD {
-            get {
-                return ((string)(this["SelectedIWAD"]));
-            }
-            set {
-                this["SelectedIWAD"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool QCDEChecked {
-            get {
-                return ((bool)(this["QCDEChecked"]));
-            }
-            set {
-                this["QCDEChecked"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string LastQCDEMap {
-            get {
-                return ((string)(this["LastQCDEMap"]));
-            }
-            set {
-                this["LastQCDEMap"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool QCDEMapsChecked {
-            get {
-                return ((bool)(this["QCDEMapsChecked"]));
-            }
-            set {
-                this["QCDEMapsChecked"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string AdditionalFilesLocation {
-            get {
-                return ((string)(this["AdditionalFilesLocation"]));
-            }
-            set {
-                this["AdditionalFilesLocation"] = value;
             }
         }
         
@@ -188,18 +68,6 @@ namespace ArcadeConnector.Properties {
             }
             set {
                 this["FilesLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string PK3OUT {
-            get {
-                return ((string)(this["PK3OUT"]));
-            }
-            set {
-                this["PK3OUT"] = value;
             }
         }
         

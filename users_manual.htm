@@ -1,166 +1,241 @@
-<style type="text/css">
-<!--
-body,td,th {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-	color: #999999;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Arcade Connector — a modern game launcher for CSUME with IRC chat, autojoin, ROM hosting, and more.">
+  <meta name="keywords" content="Arcade Connector, CSUME, game launcher, MAMEHub, arcade, IRC, retro gaming, multiplayer emulator">
+  <meta name="author" content="Mr.Rocket">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph (for social/media sharing) -->
+  <meta property="og:title" content="Arcade Connector — A Game Launcher for CSUME">
+  <meta property="og:description" content="A modern Windows launcher for CSUME with IRC chat, autojoin, and hosted ROM games.">
+  <meta property="og:url" content="https://MrRocket.github.io/ArcadeConnector/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://MrRocket.github.io/ArcadeConnector/images/banner.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>Arcade Connector TOS</title>
+  <style>
+    body {
+	background-color: #222222;
+	color: #eee;
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+	margin: 2rem;
+	background-image: url(images/BG2.gif);
+    }
+    h1 {
+      color: #00ccff;
+    }
+    a {
+      color: #00ffaa;
+    }
+    .logo {
+      max-width: 300px;
+      display: block;
+      margin-bottom: 1rem;
+    }
+  .style2 {
+	color: #00FFFF;
+	font-weight: bold;
+	font-style: italic;
 }
-body {
-	background-color: #000000;
+  .style3 {font-size: 10px}
+  .style4 {font-size: 18px}
+  .style5 {font-size: 16px}
+  .style6 {font-size: 14px}
+  .style7 {color: #999999}
+.style8 {font-size: 14px; color: #999999; }
+  a:link {
+	color: #00FFFF;
 }
-a:link {
-	color: #00FFCC;
-}
-a:visited {
-	color: #0099CC;
-}
-a:hover {
-	color: #99FF33;
-}
-a:active {
-	color: #99FF00;
-}
-.style1 {
-	font-size: 36px;
+.style21 {color: #FFFFFF}
+  .style1 {	font-size: 36px;
 	font-weight: bold;
 	color: #00FFFF;
 }
-.style2 {color: #FFFFFF}
--->
-</style>
-<table width="1001" border="0">
-  <tr>
-    <th width="218" scope="col">&nbsp;</th>
-    <th width="611" scope="col"><p align="center" class="style1">Arcade Connector &mdash; User Manual</p>      <p></p></th>
-    <th width="158" scope="col">&nbsp;</th>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td><blockquote>
-      <h1 data-start="173" data-end="209">&nbsp;</h1>
-      <h2 class="style2" data-start="211" data-end="236"><strong data-start="214" data-end="236">1. Getting Started</strong></h2>
-      <p data-start="237" data-end="400">Arcade Connector is a Windows launcher designed for hosting and joining multiplayer arcade games using <strong data-start="340" data-end="349">CSUME</strong>.<br data-start="350" data-end="353" />
-        Follow these steps to prepare your environment:</p>
-      <h3 class="style2" data-start="402" data-end="422"><strong data-start="406" data-end="422">Requirements</strong></h3>
-      <ul>
-        <li>Windows 7 / 10 / 11</li>
-        <li>.NET Framework 4.5+</li>
-        <li>CSUME executable (included)</li>
-        <li>Your own ROM files in csume/roms/</li>
-        <li>A stable internet connection for hosting/joining games.</li>
-        </ul>
-      <p>&nbsp;</p>
-      <p>When you first run <strong>Arcade Connector</strong> you be presented with the <strong>IRC login</strong> screen tab. It will try to detect if you are connected. IRC is optional and isn't required, but it will make things much easier to chat and find hosted games.</p>
-      <ol>
-        <li><strong>Create a user name</strong> or login annymously.<em> If no name is created, a random user name will be given. Starting with User and a random number</em>. </li>
-        <li><strong>Click Connect</strong> and login to IRC.</li>
-      </ol>
-        <hr data-start="594" data-end="597" />
-        <h2 class="style2" data-start="599" data-end="623"><strong data-start="602" data-end="623">2. Hosting a Game</strong></h2>
-        <ol>
-          <li>Launch <strong data-start="634" data-end="654">Arcade Connector</strong>.</li>
-          <li>Choose a ROM file from <strong data-start="682" data-end="696">Browse ROM</strong>.</li>
-          <li>Configure hosting options (engine, parameters, etc.).</li>
-          <li>Click <strong data-start="764" data-end="777">Host Game</strong>.</li>
-          <li>A join:// link will be posted to IRC so others can join.</li>
-          <li>Once done, close CSUME to return to the launcher.</li>
-        </ol>
-        <p>Note: If you're not using IRC, your server will show up in the <strong>Hosted Servers</strong> browser.</p>
-        <hr data-start="895" data-end="898" />
-        <h2 class="style2" data-start="900" data-end="924"><strong data-start="903" data-end="924">3. Joining a Game</strong></h2>
-        <ul>
-          <li>Look for join:// links in the chat window.</li>
-          <li>Click the link to automatically connect to the host.</li>
-        </ul>
-        <p>Note: If you're not using IRC, detected hosted servers will show up in the <strong>Hosted Servers</strong> browser. <em>Double Click to Connect.</em></p>
-        <hr data-start="1028" data-end="1031" />
-        <h2 class="style2" data-start="1033" data-end="1060"><strong data-start="1036" data-end="1060">4. User Status Icons</strong></h2>
-        <ul>
-          <li><strong data-start="1063" data-end="1105">Online</strong> &mdash; User is connected and active.</li>
-          <li><strong data-start="1108" data-end="1172">AFK</strong> (Away From Keyboard) &mdash; User is idle or has typed /afk.</li>
-          <li><strong data-start="1175" data-end="1217">In-game</strong> &mdash; User is currently in a game.</li>
-          <li><strong data-start="1220" data-end="1281">Ready</strong> &mdash; User has toggled <strong data-start="1249" data-end="1261">Ready Up</strong> to auto-join games.</li>
-          <li><strong data-start="1334" data-end="1371">Hosting</strong> &mdash; User is hosting a game.</li>
-          </ul>
-        <hr data-start="1373" data-end="1376" />
-        <h2 class="style2" data-start="1378" data-end="1400"><strong data-start="1381" data-end="1400">5. IRC Commands</strong></h2>
-        <ul>
-          <li><strong data-start="1403" data-end="1437">/afk</strong> &mdash; Set your status to AFK.</li>
-          <li><strong data-start="1440" data-end="1469">/back</strong> &mdash; Clear AFK status.</li>
-          <li><strong data-start="1472" data-end="1539">/sound [filename]</strong> &mdash; Play a custom sound (e.g., /sound cheer).</li>
-          <li><strong data-start="1542" data-end="1618">/image [filename]</strong> &mdash; Post an inline image from ChatImages (if enabled).</li>
-        </ul>
-        <hr data-start="1715" data-end="1718" />
-        <h2 class="style2" data-start="1720" data-end="1743"><strong data-start="1723" data-end="1743">6. Chat Features</strong></h2>
-        <ul>
-          <li><span class="style2"><strong data-start="1746" data-end="1842">Clickable Links</strong></span><br data-start="1765" data-end="1768" />
-          URLs starting with http://, https://, or join:// become clickable.</li>
-          <li><span class="style2"><strong data-start="1848" data-end="1958">Posting Images</strong></span><br data-start="1866" data-end="1869" />
-          If a URL ends with .png, .jpg, or .bmp, it will attempt to show the image inline.</li>
-          <li><span class="style2"><strong data-start="1962" data-end="2063">Sound Commands</strong></span><br data-start="1980" data-end="1983" />
-          Type /sound [soundfile]</li>
-        </ul>
-        <blockquote>
-          <p class="style2">Here's a list of sound that are currently supported:</p>
-        </blockquote>
-        <ul>
-          <li class="style2">/sound cheers</li>
-          <li class="style2">/sound beep</li>
-          <li class="style2">/sound powerup</li>
-          <li class="style2">/sound beback</li>
-          <li class="style2">/sound message</li>
-          <li class="style2">/sound doomdoor</li>
-        
-          <li><span class="style2"><strong data-start="1962" data-end="2063">Image Commands</strong></span><br data-start="1980" data-end="1983" />
-          Type /beer, /soulsphere, etc., to insert predefined images from Images/.</li>
-        </ul>
-        <blockquote>
-          <p class="style2">Here's a list of chat emoji images you can add to your message:</p>
-        </blockquote>
-        <ul>
-          <li class="style2">/gasp = <img src="ArcadeConnector/bin/Debug/Images/gasp.gif" width="16" height="16" /></li>
-          <li class="style2">/devil = <img src="ArcadeConnector/bin/Debug/Images/devil.gif" width="16" height="16" /></li>
-          <li class="style2">/cool = <img src="ArcadeConnector/bin/Debug/Images/cool.gif" width="16" height="16" /></li>
-          <li class="style2">/confused = <img src="ArcadeConnector/bin/Debug/Images/confused.gif" width="16" height="16" /></li>
-          <li class="style2">/bigsmile = <img src="ArcadeConnector/bin/Debug/Images/bigsmile.gif" width="16" height="16" /></li>
-          <li class="style2"> /thumbsdown = <img src="ArcadeConnector/bin/Debug/Images/thumbsdown.png" width="16" height="16" /></li>
-          <li class="style2"> /thumbsup = <img src="ArcadeConnector/bin/Debug/Images/thumbsup.png" width="16" height="16" /></li>
-          <li class="style2">/heart = <img src="ArcadeConnector/bin/Debug/Images/heart.gif" width="16" height="16" /></li>
-          <li class="style2">/smile = <img src="ArcadeConnector/bin/Debug/Images/smile.gif" width="16" height="16" /></li>
-          <li class="style2">/beer = <img src="ArcadeConnector/bin/Debug/Images/beer.png" width="16" height="16" /></li>
-          <li class="style2">/cheers = <img src="ArcadeConnector/bin/Debug/Images/cheers.png" width="16" height="16" /></li>
-          <li class="style2"> /snooze = <img src="ArcadeConnector/bin/Debug/Images/snooze.png" width="16" height="16" /></li>
-          <li class="style2">/soulsphere = <img src="ArcadeConnector/bin/Debug/Images/soulsphere.png" width="16" height="16" /></li>
-          <li class="style2">/ingame = <img src="ArcadeConnector/bin/Debug/Images/ingame.png" width="16" height="16" /></li>
-          <li class="style2">/zaxon_jet = <img src="ArcadeConnector/bin/Debug/Images/zaxon_jet.bmp" width="16" height="16" /></li>
-          <li class="style2"> /shinobi_life = <img src="ArcadeConnector/bin/Debug/Images/shinobi_life.bmp" width="16" height="16" /></li>
-          <li class="style2"> /pacman_ghost = <img src="ArcadeConnector/bin/Debug/Images/pacman_ghost.bmp" width="16" height="16" /></li>
-          <li class="style2">/joust_life = <img src="ArcadeConnector/bin/Debug/Images/joust_life.bmp" width="16" height="16" /><br />
-          </li>
-          <li class="style2"> Shortcuts:</li>
-          <li class="style2"> :) = <img src="ArcadeConnector/bin/Debug/Images/smile.gif" width="16" height="16" /></li>
-          <li class="style2"> :| = <img src="ArcadeConnector/bin/Debug/Images/confused.gif" width="16" height="16" /></li>
-          <li class="style2"> 8) = <img src="ArcadeConnector/bin/Debug/Images/cool.gif" width="16" height="16" /></li>
-          <li class="style2"> :D = <img src="ArcadeConnector/bin/Debug/Images/bigsmile.gif" width="16" height="16" /></li>
-          <li class="style2"> :o = <img src="ArcadeConnector/bin/Debug/Images/gasp.gif" width="16" height="16" /></li>
-          <li class="style2"> :P = <img src="ArcadeConnector/bin/Debug/Images/tongue.gif" width="16" height="16" /></li>
-          <li class="style2"> ;) = <img src="ArcadeConnector/bin/Debug/Images/wink.gif" width="16" height="16" /></li>
-        </ul>
-        <hr data-start="2065" data-end="2068" />
-        <h2 class="style2" data-start="2070" data-end="2084"><strong data-start="2073" data-end="2084">7. Tips</strong></h2>
-        <ul>
-          <li>Use the <strong data-start="2095" data-end="2107">Ready Up</strong> option to autojoin when someone hosts a game.</li>
-          <li>Enable sound notifications for chat events (e.g., joins, messages).</li>
-          </ul>
-    </blockquote>      
-    <p align="left">&nbsp;</p>    </td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+  .style22 {
+	color: #00FFFF;
+	font-weight: bold;
+}
+  </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+  <div align="center">
+    <table width="820" border="0">
+      <tr>
+        <th width="160" scope="col"><p align="center">&nbsp;</p></th>
+        <th width="640" scope="col"><div align="left"><span class="style2"><img src="images/ac_ani_logo1.gif" width="640" height="155"></span></div></th>
+        <th width="10" scope="col">&nbsp;</th>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><span class="style1">User Manual</span></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><p>&nbsp;</p>
+          <p>&nbsp;</p>
+        <p>&nbsp;</p>        </td>
+        <td><blockquote>
+          <blockquote>
+            <blockquote>
+              <h2 class="style21" data-start="211" data-end="236">&nbsp;</h2>
+            </blockquote>
+            <h2 class="style22" data-start="211" data-end="236">1. Getting Started</h2>
+            <p data-start="237" data-end="400">Arcade Connector is a Windows launcher designed for hosting and joining multiplayer arcade games using <strong data-start="340" data-end="349">CSUME</strong>.<br data-start="350" data-end="353" />
+              Follow these steps to prepare your environment:</p>
+            <h3 class="style21" data-start="402" data-end="422"><strong data-start="406" data-end="422">Requirements</strong></h3>
+            <ul>
+              <li>Windows 7 / 10 / 11</li>
+              <li>.NET Framework 4.5+</li>
+              <li>CSUME executable (included)</li>
+              <li>Your own ROM files in csume/roms/</li>
+              <li>A stable internet connection for hosting/joining games.</li>
+            </ul>
+            <p>&nbsp;</p>
+            <p>When you first run <strong>Arcade Connector</strong> you be presented with the <strong>IRC login</strong> screen tab. It will try to detect if you are connected. IRC is optional and isn't required, but it will make things much easier to chat and find hosted games.</p>
+            <ol>
+              <li><strong>Create a user name</strong> or login annymously.<em> If no name is created, a random user name will be given. Starting with User and a random number</em>. </li>
+              <li><strong>Click Connect</strong> and login to IRC.</li>
+            </ol>
+            <hr data-start="594" data-end="597" />
+            <h2 class="style22" data-start="599" data-end="623">2. Hosting a Game</h2>
+              <ol>
+                <li>Launch <strong data-start="634" data-end="654">Arcade Connector</strong>.</li>
+                <li>Choose a ROM file from <strong data-start="682" data-end="696">Browse ROM</strong>.</li>
+                <li>Configure hosting options (engine, parameters, etc.).</li>
+                <li>Click <strong data-start="764" data-end="777">Host Game</strong>.</li>
+                <li>A join:// link will be posted to IRC so others can join.</li>
+                <li>Once done, close CSUME to return to the launcher.</li>
+              </ol>
+              <p>Note: If you're not using IRC, your server will show up in the <strong>Hosted Servers</strong> browser.</p>
+            <hr data-start="895" data-end="898" />
+            <h2 class="style22" data-start="900" data-end="924">3. Joining a Game</h2>
+              <ul>
+                <li>Look for join:// links in the chat window.</li>
+                <li>Click the link to automatically connect to the host.</li>
+              </ul>
+              <p>Note: If you're not using IRC, detected hosted servers will show up in the <strong>Hosted Servers</strong> browser. <em>Double Click to Connect.</em></p>
+            <hr data-start="1028" data-end="1031" />
+            <h2 class="style22" data-start="1033" data-end="1060">4. User Status Icons</h2>
+              <ul>
+                <li><strong data-start="1063" data-end="1105">Online</strong> &mdash; User is connected and active. <img src="ArcadeConnector/bin/Debug/Images/online.png" alt="" width="16" height="16" /></li>
+                <li><strong data-start="1108" data-end="1172">AFK</strong> (Away From Keyboard) &mdash; User is idle or has typed /afk. <img src="ArcadeConnector/bin/Debug/Images/snooze.png" alt="" width="16" height="16" /></li>
+                <li><strong data-start="1175" data-end="1217">In-game</strong> &mdash; User is currently in a game. <img src="ArcadeConnector/bin/Debug/Images/ac_icon.png" alt="" width="16" height="16" /></li>
+              </ul>
+              <p>Right click your user name and select &quot;Ready up&quot; to auto join a game</p>
+              <ul>
+                <li><strong data-start="1220" data-end="1281">Ready</strong> &mdash; User has toggled <strong data-start="1249" data-end="1261">Ready Up</strong> to auto-join games. <img src="ArcadeConnector/bin/Debug/Images/user_ready.png" alt="" width="16" height="16" /></li>
+              </ul>
+              <p>When set to host a game by ticking the check box &quot;Host Game&quot;, the user icon automatically changes notifying others that you're prepared to host a game:</p>
+              <ul>
+                <li><strong data-start="1334" data-end="1371">Hosting</strong> &mdash; User is hosting a game. <img src="ArcadeConnector/bin/Debug/Images/is_moderator.png" alt="" width="16" height="16" /></li>
+              </ul>
+            <hr data-start="1373" data-end="1376" />
+            <h2 class="style22" data-start="1378" data-end="1400">5. IRC Commands</h2>
+              <ul>
+                <li><strong data-start="1403" data-end="1437">/afk</strong> &mdash; Set your status to AFK.</li>
+                <li><strong data-start="1440" data-end="1469">/back</strong> &mdash; Clear AFK status.</li>
+                <li><strong data-start="1472" data-end="1539">/sound [filename]</strong> &mdash; Play a custom sound (e.g., /sound cheer).</li>
+                <li><strong data-start="1542" data-end="1618">/image [filename]</strong> &mdash; Post an inline image from ChatImages (if enabled).</li>
+              </ul>
+            <hr data-start="1715" data-end="1718" />
+            <h2 class="style22" data-start="1720" data-end="1743">6. Chat Features</h2>
+              <ul>
+                <li><span class="style21"><strong data-start="1746" data-end="1842">Clickable Links</strong></span><br data-start="1765" data-end="1768" />
+                  URLs starting with http://, https://, or join:// become clickable.</li>
+                <li><span class="style21"><strong data-start="1848" data-end="1958">Posting Images</strong></span><br data-start="1866" data-end="1869" />
+                  If a URL ends with .png, .jpg, or .bmp, it will attempt to show the image inline.</li>
+                <li><span class="style21"><strong data-start="1962" data-end="2063">Sound Commands</strong></span><br data-start="1980" data-end="1983" />
+                  Type /sound [soundfile]</li>
+              </ul>
+              <blockquote>
+                <p class="style21">Here's a list of sound that are currently supported:</p>
+              </blockquote>
+              <ul>
+                <li>/sound cheers</li>
+                <li>/sound beep</li>
+                <li>/sound powerup</li>
+                <li>/sound beback</li>
+                <li>/sound message</li>
+                <li>/sound doomdoor</li>
+                <li><span class="style21"><strong data-start="1962" data-end="2063">Image Commands</strong></span><br data-start="1980" data-end="1983" />
+                  Type /beer, /soulsphere, etc., to insert predefined images from Images/.</li>
+              </ul>
+              <blockquote>
+                <p class="style21">Here's a list of chat emoji images you can add to your message:</p>
+              </blockquote>
+              <ul>
+                <li>/gasp = <img src="ArcadeConnector/bin/Debug/Images/gasp.gif" width="16" height="16" /></li>
+                <li>/devil = <img src="ArcadeConnector/bin/Debug/Images/devil.gif" width="16" height="16" /></li>
+                <li>/cool = <img src="ArcadeConnector/bin/Debug/Images/cool.gif" width="16" height="16" /></li>
+                <li>/confused = <img src="ArcadeConnector/bin/Debug/Images/confused.gif" width="16" height="16" /></li>
+                <li>/bigsmile = <img src="ArcadeConnector/bin/Debug/Images/bigsmile.gif" width="16" height="16" /></li>
+                <li> /thumbsdown = <img src="ArcadeConnector/bin/Debug/Images/thumbsdown.png" width="16" height="16" /></li>
+                <li> /thumbsup = <img src="ArcadeConnector/bin/Debug/Images/thumbsup.png" width="16" height="16" /></li>
+                <li>/heart = <img src="ArcadeConnector/bin/Debug/Images/heart.gif" width="16" height="16" /></li>
+                <li>/smile = <img src="ArcadeConnector/bin/Debug/Images/smile.gif" width="16" height="16" /></li>
+                <li>/beer = <img src="ArcadeConnector/bin/Debug/Images/beer.png" width="16" height="16" /></li>
+                <li>/cheers = <img src="ArcadeConnector/bin/Debug/Images/cheers.png" width="16" height="16" /></li>
+                <li> /snooze = <img src="ArcadeConnector/bin/Debug/Images/snooze.png" width="16" height="16" /></li>
+                <li>/soulsphere = <img src="ArcadeConnector/bin/Debug/Images/soulsphere.png" width="16" height="16" /></li>
+                <li>/ingame = <img src="ArcadeConnector/bin/Debug/Images/ingame.png" width="16" height="16" /></li>
+                <li>/zaxon_jet = <img src="ArcadeConnector/bin/Debug/Images/zaxon_jet.bmp" width="16" height="16" /></li>
+                <li> /shinobi_life = <img src="ArcadeConnector/bin/Debug/Images/shinobi_life.bmp" width="16" height="16" /></li>
+                <li> /pacman_ghost = <img src="ArcadeConnector/bin/Debug/Images/pacman_ghost.bmp" width="16" height="16" /></li>
+                <li>/joust_life = <img src="ArcadeConnector/bin/Debug/Images/joust_life.bmp" width="16" height="16" /><br />
+                                </li>
+                <li> Shortcuts:</li>
+                <li> :) = <img src="ArcadeConnector/bin/Debug/Images/smile.gif" width="16" height="16" /></li>
+                <li> :| = <img src="ArcadeConnector/bin/Debug/Images/confused.gif" width="16" height="16" /></li>
+                <li> 8) = <img src="ArcadeConnector/bin/Debug/Images/cool.gif" width="16" height="16" /></li>
+                <li> :D = <img src="ArcadeConnector/bin/Debug/Images/bigsmile.gif" width="16" height="16" /></li>
+                <li> :o = <img src="ArcadeConnector/bin/Debug/Images/gasp.gif" width="16" height="16" /></li>
+                <li> :P = <img src="ArcadeConnector/bin/Debug/Images/tongue.gif" width="16" height="16" /></li>
+                <li> ;) = <img src="ArcadeConnector/bin/Debug/Images/wink.gif" width="16" height="16" /></li>
+              </ul>
+            <hr data-start="2065" data-end="2068" />
+            <h2 class="style22" data-start="2070" data-end="2084">7. Tips</h2>
+              <ul>
+                <li>Use the <strong data-start="2095" data-end="2107">Ready Up</strong> <img src="ArcadeConnector/bin/Debug/Images/user_ready.png" alt="" width="16" height="16" /> option to autojoin when someone <img src="ArcadeConnector/bin/Debug/Images/is_moderator.png" alt="" width="16" height="16" /> hosts a game.</li>
+                <li>Enable sound notifications for chat events (e.g., joins, messages).</li>
+              </ul>
+          </blockquote>
+        </blockquote></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <blockquote>
+      <blockquote><p align="left">&nbsp;</p>
+      </blockquote>
+    </blockquote>
+    </div>
+  <p> <span class="style3">
+    <footer>
+    </footer>
+  </span> <span class="style4">
+  <footer></footer>
+  </span> <span class="style5">
+  <footer></footer>
+  </span> <span class="style6">
+  <footer></footer>
+  </span> <span class="style7">
+  <footer></footer>
+  </span>
+  <footer><div align="center" class="style8">
+    <div align="right"><br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+  &copy; 2025 Mr.Rocket — Arcade Connector Project. All rights reserved. </div>
+  </div>
+    </footer>
+</p>
+</body>
+</html>

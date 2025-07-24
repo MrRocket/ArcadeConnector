@@ -12,10 +12,25 @@
   gtag('config', 'G-VBL0256RP7');
 </script>
 
+<script>
+  function trackDownload() {
+    let count = localStorage.getItem('downloadCount') || 0;
+    count++;
+    localStorage.setItem('downloadCount', count);
+    document.getElementById("localDownloadCount").innerText = count;
+    console.log("Download count updated: " + count);
+  }
+
+  // On page load: show existing count if present
+  window.onload = function () {
+    const savedCount = localStorage.getItem('downloadCount') || 0;
+    document.getElementById("localDownloadCount").innerText = savedCount;
+  };
+</script>
 
 
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Arcade Connector — a modern game launcher for CSUME with IRC chat, autojoin, ROM hosting, and more.">
   <meta name="keywords" content="Arcade Connector, CSUME, game launcher, MAMEHub, arcade, IRC, retro gaming, multiplayer emulator">
@@ -71,6 +86,7 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 }
+.style14 {color: #00CCCC}
   </style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
 <body>
@@ -120,13 +136,15 @@
               <p><img src="images/windows-10-logo.png" width="50" height="50"> Windows only</p>
             </blockquote>
             <ul>
-              <li><strong>Current version: </strong></li>
-             <li>
-                  <a href="download.html" target="_self" 
-                     onclick="gtag('event', 'download_click', {'event_category': 'Downloads', 'event_label': 'Arcade Connector v1.0.2'});">
-                    <strong>Arcade Connector v 1.0.2</strong>
-                  </a> 🎮
-                </li>
+<li>
+  <a href="download.html" target="_self"
+     onclick="trackDownload(); gtag('event', 'download_click', {
+       'event_category': 'Downloads',
+       'event_label': 'Arcade Connector v1.0.2'
+     });">
+    <strong>Arcade Connector v 1.0.2</strong>
+  </a> 🎮
+</li>
 
               <li>Note* If running Windows 7, you may need to update your .Net Framework to:</li>
               <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=30653" target="_blank">.Net Framework 4.5</a></li>
@@ -159,12 +177,20 @@
   <footer></footer>
   </span>
   <footer><div align="center" class="style8">
-    <div align="right"><br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+      <div align="left">
+        <p><br>
+          <br>
+          <br>
+          </p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p><br>
+          <br>
+          </p>
+      </div>
+    <p align="right"><em>Total downloads (this device): <strong><span class="style14" id="localDownloadCount">0</span></strong></em></p>
+      <div align="right"><br>
+        <br>
   &copy; 2025 Mr.Rocket — Arcade Connector Project. All rights reserved. </div>
   </div>
     </footer>

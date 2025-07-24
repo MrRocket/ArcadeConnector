@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style type="text/css">
+<!--
+.style18 {color: #CCCCCC}
+-->
+</style>
 
+// Google tag info
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBL0256RP7"></script>
 <script>
@@ -12,6 +18,7 @@
   gtag('config', 'G-VBL0256RP7');
 </script>
 
+// the number of times a user has viewed the downloads page:
 <script>
   function trackDownload() {
     let count = localStorage.getItem('downloadCount') || 0;
@@ -27,7 +34,6 @@
     document.getElementById("localDownloadCount").innerText = savedCount;
   };
 </script>
-
 
 
 <meta charset="UTF-8">
@@ -87,10 +93,11 @@
 	font-size: 16px;
 }
 .style14 {
-	color: #6633FF;
+	color: #66CCFF;
 	font-size: 14px;
 }
 .style16 {font-size: 9px}
+  .style17 {color: #66FFCC}
   </style>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
 <body>
@@ -197,13 +204,30 @@
       </blockquote>
       <div align="right">
         <blockquote>
+          <p><p><p style="text-align: center; color: #00ffaa; font-weight: bold;">&nbsp;
+  </p>
+          <p style="text-align: center; color: #00ffaa; font-weight: bold;">&nbsp;</p>
+          </p>
+          <p>&nbsp;</p>
+          <p><em><span class="style16"><span style="text-align: center; color: #00ffaa; font-weight: bold;"><span class="style18">Site visits:</span> <span class="style6" id="visitCount2">0</span></span></span></em><br>
+          <em><span class="style16">Downloads page has been viewed: (on this device): <strong><span class="style14" id="localDownloadCount">0</span></strong></span></em></p>
           <p><br>
-            <em><span class="style16">The number of times the downloads page has been viewed: (on this device): <strong><span class="style14" id="localDownloadCount">0</span></strong></span></em><br>
-            &copy; 2025 Mr.Rocket — Arcade Connector Project. All rights reserved. </p>
+  &copy; 2025 Mr.Rocket — Arcade Connector Project. All rights reserved. </p>
+          </p>
         </blockquote>
     </div>
   </div>
     </footer>
 </p>
+<script>
+  fetch('https://api.countapi.xyz/hit/mrrocket.github.io/ArcadeConnector')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('visitCount').innerText = data.value;
+    })
+    .catch(err => console.error('Visit counter error:', err));
+</script>
+
+
 </body>
 </html>

@@ -1,224 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style type="text/css">
-<!--
-.style18 {color: #CCCCCC}
--->
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Arcade Connector — a modern game launcher for CSUME with IRC chat, autojoin, ROM hosting, and more." />
+  <meta name="keywords" content="Arcade Connector, CSUME, game launcher, MAMEHub, arcade, IRC, retro gaming, multiplayer emulator" />
+  <meta name="author" content="Mr.Rocket" />
+  <meta name="robots" content="index, follow" />
 
+<!-- Open Graph -->
+  <meta property="og:title" content="Arcade Connector — A Game Launcher for CSUME" />
+  <meta property="og:description" content="A modern Windows launcher for CSUME with IRC chat, autojoin, and hosted ROM games." />
+  <meta property="og:url" content="https://MrRocket.github.io/ArcadeConnector/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://MrRocket.github.io/ArcadeConnector/images/banner.jpg" />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VBL0256RP7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <title>Arcade Connector</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-  gtag('config', 'G-VBL0256RP7');
-</script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VBL0256RP7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VBL0256RP7');
+  </script>
 
-<script>
-  function trackDownload() {
-    let count = localStorage.getItem('downloadCount') || 0;
-    count++;
-    localStorage.setItem('downloadCount', count);
-    document.getElementById("localDownloadCount").innerText = count;
-    console.log("Download count updated: " + count);
-  }
-
-  // On page load: show existing count if present
-  window.onload = function () {
-    const savedCount = localStorage.getItem('downloadCount') || 0;
-    document.getElementById("localDownloadCount").innerText = savedCount;
-  };
-</script>
-
-
-<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Arcade Connector — a modern game launcher for CSUME with IRC chat, autojoin, ROM hosting, and more.">
-  <meta name="keywords" content="Arcade Connector, CSUME, game launcher, MAMEHub, arcade, IRC, retro gaming, multiplayer emulator">
-  <meta name="author" content="Mr.Rocket">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph (for social/media sharing) -->
-  <meta property="og:title" content="Arcade Connector — A Game Launcher for CSUME">
-  <meta property="og:description" content="A modern Windows launcher for CSUME with IRC chat, autojoin, and hosted ROM games.">
-  <meta property="og:url" content="https://MrRocket.github.io/ArcadeConnector/">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://MrRocket.github.io/ArcadeConnector/images/banner.jpg">
-
-  <!-- Favicon -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>Arcade Connector</title>
-  <style>
-    body {
-	background-color: #222222;
-	color: #eee;
-	font-family: Arial, sans-serif;
-	line-height: 1.6;
-	margin: 2rem;
-	background-image: url(images/BG2.gif);
+  <!-- Local download counter -->
+  <script>
+    function trackDownload() {
+      let count = localStorage.getItem('downloadCount') || 0;
+      count++;
+      localStorage.setItem('downloadCount', count);
+      document.getElementById("localDownloadCount").innerText = count;
     }
-    h1 {
+    window.onload = function () {
+      const savedCount = localStorage.getItem('downloadCount') || 0;
+      document.getElementById("localDownloadCount").innerText = savedCount;
+    };
+  </script>
+
+<style>
+    body {
+      background-color: #222;
+      background-image: url(images/BG2.gif);
+      color: #eee;
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3 {
       color: #00ccff;
     }
+
     a {
       color: #00ffaa;
+      text-decoration: none;
     }
+
     .logo {
-      max-width: 300px;
-      display: block;
+      max-width: 100%;
+      height: auto;
       margin-bottom: 1rem;
     }
-  .style1 {
-	color: #00CCFF;
-	font-weight: bold;
-}
-  .style2 {
-	color: #00FFFF;
-	font-weight: bold;
-	font-style: italic;
-}
-  .style3 {font-size: 10px}
-  .style4 {font-size: 18px}
-  .style5 {font-size: 16px}
-  .style6 {font-size: 14px}
-  .style7 {color: #999999}
-.style8 {font-size: 14px; color: #999999; }
-.style12 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-}
-.style14 {
-	color: #66CCFF;
-	font-size: 14px;
-}
-.style16 {font-size: 9px}
-  .style17 {color: #66FFCC}
-  </style>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
-<body>
-  <div align="center">
-    <table width="820" border="0">
-      <tr>
-        <th width="160" scope="col"><p align="center">&nbsp;</p></th>
-        <th width="640" scope="col"><div align="left"><span class="style2"><img src="images/ac_ani_logo1.gif" width="640" height="155"></span></div></th>
-        <th width="10" scope="col">&nbsp;</th>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td><p align="left" class="style12">Arcade Connector is a Windows-based launcher for <a href="https://github.com/MisterTea/MAMEHub" target="_blank">C.S.U.M.E</a>: a Client/Server Universal Machine Emulator. Based on <a href="https://www.mamedev.org/" target="_blank">M.A.M.E</a> but with client server networking in mind. Arcade Connector brings multiplayer arcade games to life with modern features like IRC chat, ready-up autojoin, profile images, and game broadcasting.</p></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td><p><a href="images/ac_siteshot1.png" target="_self"><img src="images/ac_siteshot1.png" width="156" height="214"></a></p>
-          <p><a href="images/ac_siteshot2.png" target="_self"><img src="images/ac_siteshot2.png" width="156" height="214"></a></p>
-          <p><a href="images/ac_siteshot3.png" target="_self"><img src="images/ac_siteshot3.png" width="156" height="214"></a></p>        </td>
-        <td><ul>
-          <blockquote><h2 align="left" class="style1"><img src="images/de_viedor1.png" width="640" height="33"></h2>
-            <p align="left" class="style1"><img src="images/Features.png" width="228" height="33"></p>
-          </blockquote>
-            <ul>
-              <li>Auto-join via Ready-Up</li>
-              <li>Integrated IRC chat with status-aware icons</li>
-              <li>Clickable <code>join://</code> links for fast connection</li>
-              <li>Profile pictures and sounds</li>
-              <li>UDP-hosted server detection (works without IRC)</li>
-              <li>Hosted Servers Browser
-                (works without IRC)
-                <h2 class="style1"><img src="images/Requirements.png" width="280" height="33"></h2>
-              </li>
-              <li>Windows 7/10/11 with .NET Framework 4.5+</li>
-              <li>Minimum hardware: Dual-core CPU, 1GB RAM, Direct3D-capable GPU</li>
-              <li>Internet or LAN connection<br>
-                  <em>(Offline gameplay still works, but hosting and joining require a network)</em></li>
-              <li>CSUME (included)</li>
-              <li>Ports 5029 (CSUME), 45291 (broadcast)</li>
-              <li>ROM files (not provided) placed in the csume/roms folder<br>
-                ⚠️ <em>Arcade Connector does not and will not provide ROM files. Users must supply their own.</em></li>
-            </ul>
-        </ul>
-          <blockquote>
-            <blockquote>
-              <h1 class="style1"><img src="images/Downloads.png" width="275" height="46"></h1>
-              <p><img src="images/windows-10-logo.png" width="50" height="50"> Windows only</p>
-            </blockquote>
-            <ul>
-<li>
-  <a href="download.html" target="_self"
-     onclick="trackDownload(); gtag('event', 'download_click', {
-       'event_category': 'Downloads',
-       'event_label': 'Arcade Connector v1.0.2'
-     });">
-    <strong>Arcade Connector v 1.0.2</strong>
-  </a> 🎮
-</li>
 
-              <li>Note* If running Windows 7, you may need to update your .Net Framework to:</li>
-              <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=30653" target="_blank">.Net Framework 4.5</a></li>
-            </ul>
-            <blockquote>
-              <p><strong>View:</strong> <a href="users_manual.htm"><strong>User Manual</strong></a></p>
-            </blockquote>
-            <h3 align="left" class="style1">Source Code:</h3>
-            <p align="left"><strong>GitHub Repository:</strong> <a href="https://github.com/MrRocket/ArcadeConnector" target="_blank">https://github.com/MrRocket/ArcadeConnector</a></p>
-            <p align="left"><strong>License:</strong> Open-source under the MIT License</p>
-          </blockquote>          </td>
-        <td>&nbsp;</td>
-      </tr>
-    </table>
-    <blockquote>
-      <blockquote><p align="left">&nbsp;</p>
-      </blockquote>
-    </blockquote>
-    </div>
-  <p> <span class="style3">
-    <footer>
-    </footer>
-  </span> <span class="style4">
-  <footer></footer>
-  </span> <span class="style5">
-  <footer></footer>
-  </span> <span class="style6">
-  <footer></footer>
-  </span> <span class="style7">
-  <footer></footer>
-  </span>
-  <footer><div align="center" class="style8">
-      <div align="left">
-        <p><br>
-          <br>
-          <br>
-          </p>
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <p><br>
-          <br>
-          </p>
+    .content {
+      max-width: 820px;
+      margin: auto;
+    }
+
+    .sidebar {
+      float: left;
+      width: 190px;
+    }
+
+    .main {
+      float: right;
+      width: 640px;
+    }
+
+    .footer {
+      clear: both;
+      text-align: center;
+      font-size: 14px;
+      color: #999;
+      margin-top: 4rem;
+    }
+
+    .features li {
+      margin-bottom: 0.4rem;
+    }
+
+    .tiny {
+      font-size: 10px;
+    }
+
+    .small {
+      font-size: 14px;
+    }
+
+    .lightblue {
+      color: #66FFCC;
+    }
+
+    .windows-logo {
+      width: 50px;
+      height: 50px;
+      vertical-align: middle;
+    }
+
+    .screenshots img {
+      margin-bottom: 0.5rem;
+      border: 2px solid #444;
+      width: 156px;
+      height: 214px;
+    }
+
+    .downloads {
+      margin-top: 1rem;
+    }
+
+    .download-button {
+      font-weight: bold;
+      color: #00ffaa;
+    }
+  .style1 {font-size: 16px; }
+</style>
+</head>
+<body>
+  <div class="content">
+    <div class="main">
+      <img src="images/ac_ani_logo1.gif" class="logo" alt="Arcade Connector Logo">
+
+      <p class="style1">Arcade Connector is a Windows-based launcher for <a href="https://github.com/MisterTea/MAMEHub" target="_blank">C.S.U.M.E</a>: a Client/Server Universal Machine Emulator. Based on <a href="https://www.mamedev.org/" target="_blank">M.A.M.E</a> but with client-server networking in mind. Arcade Connector brings multiplayer arcade games to life with modern features like IRC chat, ready-up autojoin, profile images, and game broadcasting.</p>
+
+      <h2><img src="images/Features.png" alt="Features" width="228" height="33"><a href="images/ac_siteshot1.png"><img src="images/ac_siteshot1.png" alt="Screenshot 1" width="89" height="121"> </a><a href="images/ac_siteshot2.png"><img src="images/ac_siteshot2.png" alt="Screenshot 2" width="89" height="121"> </a><a href="images/ac_siteshot3.png"><img src="images/ac_siteshot3.png" alt="Screenshot 3" width="89" height="121"></a></h2>
+      <ul class="features small">
+        <li class="style1">Auto-join via Ready-Up</li>
+        <li class="style1">Integrated IRC chat with status-aware icons</li>
+        <li class="style1">Clickable <code>join://</code> links for fast connection</li>
+        <li class="style1">Profile pictures and sounds</li>
+        <li class="style1">UDP-hosted server detection (works without IRC)</li>
+        <li class="style1">Hosted Servers Browser</li>
+      </ul>
+
+      <p><img src="images/Requirements.png" alt="Features" width="280" height="33"></p>
+      <ul class="features small">
+        <li class="style1">Windows 7/10/11 with .NET Framework 4.5+</li>
+        <li class="style1">Minimum hardware: Dual-core CPU, 1GB RAM, Direct3D-capable GPU</li>
+        <li class="style1">Internet or LAN connection (offline still works locally)</li>
+        <li class="style1">CSUME (included)</li>
+        <li class="style1">Ports: 5029 (CSUME), 45291 (broadcast)</li>
+        <li><span class="style1">ROM files placed in the <code>csume/roms</code> folder<br>
+          <em>⚠️ Arcade Connector does not provide ROMs. You must supply your own.</em></span></li>
+      </ul>
+      <h2><img src="images/Downloads.png" alt="Downloads" width="275" height="46"></h2>
+      <p><img src="images/windows-10-logo.png" class="windows-logo" alt="Windows only"> Windows only</p>
+      <div class="downloads small">
+        <ul class="style1">
+          <li>            <a href="download.html" class="download-button" onclick="trackDownload(); gtag('event', 'download_click', { 'event_category': 'Downloads', 'event_label': 'Arcade Connector v1.0.2' });">
+            Arcade Connector v 1.0.2 🎮
+          </a> </li>
+          <li>Note: Windows 7 users may need to install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=30653" target="_blank">.NET Framework 4.5</a></li>
+        </ul>
       </div>
-      <blockquote>
-        <p align="right">&nbsp;</p>
-      </blockquote>
-      <div align="right">
-        <blockquote>
-          <p><p><p style="text-align: center; color: #00ffaa; font-weight: bold;">&nbsp;
-  </p>
-          <p style="text-align: center; color: #00ffaa; font-weight: bold;">&nbsp;</p>
-          </p>
-          <p>&nbsp;</p>
-          <p><img src="https://hits.sh/mrrocket.github.io/ArcadeConnector.svg?style=flat-square&label=Visits&color=blue" />
-<br>
-          <em><span class="style16">Downloads page has been viewed: (on this device): <strong><span class="style14" id="localDownloadCount">0</span></strong></span></em></p>
-          <p><br>
-  &copy; 2025 Mr.Rocket — Arcade Connector Project. All rights reserved. </p>
-          </p>
-        </blockquote>
+
+      <p class="small"><span class="style1"><strong>View:</strong> <a href="users_manual.htm"><strong>User Manual</strong></a></span></p>
+
+      <h3 class="style1">Source Code:</h3>
+      <p class="style1"><strong>GitHub Repository:</strong> <a href="https://github.com/MrRocket/ArcadeConnector" target="_blank">github.com/MrRocket/ArcadeConnector</a></p>
+      <p class="style1"><strong>License:</strong> Open-source under the MIT License</p>
+    </div>
+
+    <div class="footer">
+      <p><img src="https://hits.sh/mrrocket.github.io/ArcadeConnector.svg?style=flat-square&label=Visits&color=blue" alt="Page view counter" /></p>
+      <p class="tiny">Downloads page viewed (on this device): <strong class="lightblue" id="localDownloadCount">0</strong></p>
+      <p>&copy; 2025 Mr.Rocket — Arcade Connector Project. All rights reserved.</p>
     </div>
   </div>
-    </footer>
-</p>
-
 </body>
 </html>
